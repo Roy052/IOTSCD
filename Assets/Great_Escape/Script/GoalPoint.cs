@@ -9,7 +9,8 @@ public class GoalPoint : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            SceneManager.LoadScene("ge0");
+            SceneManager.LoadScene("geSuccess");
+            
         }
     }
 

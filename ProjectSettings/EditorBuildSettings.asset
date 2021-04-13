@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Great_Escape/Scene/ge0.unity
+    path: Assets/Great_Escape/Scene/geSuccess.unity
     guid: b26da5b77c3adc04884c054de79715ce
   - enabled: 1
     path: Assets/Great_Escape/Scene/ge1.unity
     guid: 16264af73c0dba5449bd65e953d72936
+  - enabled: 1
+    path: Assets/Great_Escape/Scene/geFail.unity
+    guid: 8f7c7802edf48154d8fe1d86a9a61471
   m_configObjects: {}
