@@ -6,22 +6,33 @@ using UnityEngine.UI;
 public class DirectionButton : MonoBehaviour
 {
     Button button;
-    int ordercount;
-    private GameObject character;
+    private Playermove playerMove;
     // Start is called before the first frame update
 
     private void Awake()
     {
-        ordercount = 0;
-        character = GameObject.FindGameObjectWithTag("Character");
+        playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<Playermove>();
     }
     public void onClickButton()
     { 
-        Debug.Log(this.gameObject.name);
+        //Debug.Log(this.gameObject.name);
         if(this.gameObject.name == "Up")
         {
-            
+            playerMove.UpButtonClicked();
         }
+        if(this.gameObject.name == "Left")
+        {
+            playerMove.LeftButtonClicked();
+        }
+        if (this.gameObject.name == "Right")
+        {
+            playerMove.RightButtonClicked();
+        }
+    }
+
+    public void TimeOver()
+    {
+        gameObject.SetActive(false);
     }
 
     void Start()

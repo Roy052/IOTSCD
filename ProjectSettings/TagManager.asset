@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Start
+  - Button
   layers:
   - Default
   - TransparentFX
