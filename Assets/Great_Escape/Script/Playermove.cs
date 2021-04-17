@@ -8,6 +8,7 @@ public class Playermove: MonoBehaviour
     public int[] order;
     private int ordercount = 0;
     bool collision_occur = false;
+    public Rigidbody2D playerRigidBody;
 
     // Start is called before the first frame update
     void Start()
@@ -31,17 +32,23 @@ public class Playermove: MonoBehaviour
             if (order[i] == 0)
             {
                 
-                //while(collision_occur == false)
-                //    transform.Translate( (transform.position - new Vector3(1,0,0)) * Time.deltaTime);
-
+                playerRigidBody.AddForce(new Vector2(-moveSpeed*30, 0));
+                if(collision_occur == true)
+                    playerRigidBody.AddForce(new Vector2(0, moveSpeed * 30));
             } 
-                
+            if(order[i] == 1)
+                playerRigidBody.AddForce(new Vector2(0, moveSpeed * 30));
+            if(order[i] == 2)
+                playerRigidBody.AddForce(new Vector2(0, -moveSpeed * 30));
+
         }
     }
+    
+    //IEnumerator WaitForMove
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Button") == true)
+        if (collision.CompareTag("Wall") == true)
         {
             collision_occur = true;
         }

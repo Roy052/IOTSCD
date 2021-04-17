@@ -8,42 +8,32 @@ public class CountdownTimer : MonoBehaviour
 {
     float currentTime = 0f;
     public float startingTime;
-    GameObject[] buttons;
-    DirectionButton temp;
-    bool printed = false;
+    GameSystem gamesystem;
+    public bool Active = false;
 
     [SerializeField] Text countdownText;
     void Start()
     {
         currentTime = startingTime;
-        buttons = GameObject.FindGameObjectsWithTag("Button");
+        gamesystem = GameObject.FindGameObjectWithTag("GameSystem").GetComponent<GameSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentTime -= 1 * Time.deltaTime;
-        if (currentTime > 0)
+        if (Active)
         {
-            
-            countdownText.text = currentTime.ToString("0.0");
-            countdownText.color = Color.red;
-        }
-
-        if(currentTime <= 0)
-        {
-            if (printed != true)
+            currentTime -= 1 * Time.deltaTime;
+            if (currentTime > 0)
             {
-                for (int i = 0; i < 3; i++)
-                {
-                    Debug.Log(buttons[i].name);
-                    buttons[i].GetComponent<DirectionButton>().TimeOver();
-                    
-                }
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Playermove>().Movement();
-                printed = true;
+                countdownText.text = currentTime.ToString("0.0");
+                countdownText.color = Color.red;
             }
-            //SceneManager.LoadScene("geFail");
+            if (currentTime <= 0)
+            {
+                gamesystem.TimeOver();
+            }
         }
+        
     }
 }
