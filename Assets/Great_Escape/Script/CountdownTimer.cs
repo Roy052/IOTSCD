@@ -10,6 +10,7 @@ public class CountdownTimer : MonoBehaviour
     public float startingTime;
     GameSystem gamesystem;
     public bool Active = false;
+    bool flag = false;
 
     [SerializeField] Text countdownText;
     void Start()
@@ -31,7 +32,11 @@ public class CountdownTimer : MonoBehaviour
             }
             if (currentTime <= 0)
             {
-                gamesystem.TimeOver();
+                if (flag == false)
+                {
+                    gamesystem.TimeOver();
+                    flag = true;
+                }
             }
         }
         

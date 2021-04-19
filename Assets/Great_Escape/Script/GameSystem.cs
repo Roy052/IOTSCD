@@ -3,10 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO.Ports;
 
 public enum GameState { START, ORDERING, MOVEMENT, SUCCESS, FAIL}
 public class GameSystem : MonoBehaviour
 {
+    //포트 enum
+    public enum PortNumber
+    {
+        COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8,
+        COM9, COM10, COM11, COM12, COM13, COM14, COM15, COM16,
+    }
+
+    private SerialPort serial;
+
+    //내 포트 기준이라 다를 수 있음.
+    [SerializeField]
+    private PortNumber portNumber = PortNumber.COM6;
+    [SerializeField]
+    private int baudrate = 9600;
+
     GameObject[] buttons;
     DirectionButton temp;
     public Text orderMessage;
@@ -16,10 +32,20 @@ public class GameSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        //Game Start
         state = GameState.START;
         buttons = GameObject.FindGameObjectsWithTag("Button");
-        StartCoroutine(SetUpGame());
         countdown = GameObject.FindGameObjectWithTag("Countdown").GetComponent<CountdownTimer>();
+
+        //시리얼 통신
+        serial = new SerialPort(portNumber.ToString(), baudrate, Parity.None, 8, StopBits.One);
+        serial.Open();
+        serial.ReadTimeout = 5;
+
+
+        StartCoroutine(SetUpGame());
+        
     }
 
     IEnumerator SetUpGame()
@@ -44,6 +70,21 @@ public class GameSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //시리얼 값 받아서 로그 찍기
+        if (serial.IsOpen)
+        {
+            Debug.Log(serial.ReadByte());
+            /*try
+            {
+                Debug.Log(serial.ReadByte());
+            }
+            catch (System.TimeoutException e)
+            {
+                Debug.Log(e);
+                throw;
+            }
+            Debug.Log("Connected");*/
+        }
+            
     }
 }
