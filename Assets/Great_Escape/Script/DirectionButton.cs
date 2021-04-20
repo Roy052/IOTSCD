@@ -20,13 +20,17 @@ public class DirectionButton : MonoBehaviour
         {
             playerMove.UpButtonClicked();
         }
-        if(this.gameObject.name == "Left")
+        else if(this.gameObject.name == "Left")
         {
             playerMove.LeftButtonClicked();
         }
-        if (this.gameObject.name == "Right")
+        else if(this.gameObject.name == "Right")
         {
             playerMove.RightButtonClicked();
+        }
+        else if(this.gameObject.name == "Reset")
+        {
+            playerMove.ResetButtonClicked();
         }
     }
 

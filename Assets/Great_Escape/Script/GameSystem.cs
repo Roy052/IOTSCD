@@ -41,9 +41,17 @@ public class GameSystem : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         //시리얼 통신
-        serial = new SerialPort(portNumber.ToString(), baudrate, Parity.None, 8, StopBits.One);
-        serial.Open();
-        serial.ReadTimeout = 5;
+        try
+        {
+            serial = new SerialPort(portNumber.ToString(), baudrate, Parity.None, 8, StopBits.One);        
+            //serial.Open();
+            serial.ReadTimeout = 5;
+        }
+        catch(MissingComponentException e)
+        {
+            Debug.Log(e);
+            throw;
+        }
 
 
         StartCoroutine(SetUpGame());
@@ -61,14 +69,21 @@ public class GameSystem : MonoBehaviour
     public void TimeOver()
     {
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             Debug.Log(buttons[i].name);
             buttons[i].GetComponent<DirectionButton>().TimeOver();
 
         }
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Playermove>().Movement();
+        StartCoroutine(GameObject.FindGameObjectWithTag("Player").GetComponent<Playermove>().Movement());
     }
+    
+    public void gameRestart()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -76,7 +91,7 @@ public class GameSystem : MonoBehaviour
         if (serial.IsOpen)
         {
             player.GetComponent<Playermove>().movewithArduino(serial.ReadByte());
-            Debug.Log(serial.ReadByte());
+            //Debug.Log(serial.ReadByte());
             /*try
             {
                 Debug.Log(serial.ReadByte());
