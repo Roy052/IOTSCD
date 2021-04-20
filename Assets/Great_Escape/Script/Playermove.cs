@@ -70,4 +70,12 @@ public class Playermove: MonoBehaviour
         Debug.Log("RightButtonClicked");
         order[ordercount++] = 2;
     }
+
+    public void movewithArduino(int num)
+    {
+        if(num == 0) transform.Translate(new Vector2(0, (float) -0.75));
+        else if (num == 1) transform.Translate(new Vector2((float) -0.75, 0));
+        else if (num == 2) transform.Translate(new Vector2(0, (float) 0.75));
+        else if (num == 3) transform.Translate(new Vector2((float) 0.75, 0));
+    }
 }

@@ -29,6 +29,7 @@ public class GameSystem : MonoBehaviour
     CountdownTimer countdown;
 
     public GameState state;
+    GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +38,7 @@ public class GameSystem : MonoBehaviour
         state = GameState.START;
         buttons = GameObject.FindGameObjectsWithTag("Button");
         countdown = GameObject.FindGameObjectWithTag("Countdown").GetComponent<CountdownTimer>();
+        player = GameObject.FindGameObjectWithTag("Player");
 
         //시리얼 통신
         serial = new SerialPort(portNumber.ToString(), baudrate, Parity.None, 8, StopBits.One);
@@ -73,6 +75,7 @@ public class GameSystem : MonoBehaviour
         //시리얼 값 받아서 로그 찍기
         if (serial.IsOpen)
         {
+            player.GetComponent<Playermove>().movewithArduino(serial.ReadByte());
             Debug.Log(serial.ReadByte());
             /*try
             {
