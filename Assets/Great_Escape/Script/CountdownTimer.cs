@@ -22,6 +22,7 @@ public class CountdownTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //GameSystem이 시작하도록 Activate 값 바꿈.
         if (Active)
         {
             currentTime -= 1 * Time.deltaTime;

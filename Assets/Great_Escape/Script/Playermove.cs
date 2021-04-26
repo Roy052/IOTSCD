@@ -39,6 +39,8 @@ public class Playermove: MonoBehaviour
     {
         //게임이 부드러워 보이기 위해 약간의 지연시간
         float bufferedTime = (float) 0.3;
+
+        //order에 따라 움직임 수행
         for (int i = 0; i < ordercount; i++)
         {
             Debug.Log(order[i]);
@@ -68,10 +70,11 @@ public class Playermove: MonoBehaviour
 
         }
         yield return new WaitForSeconds(bufferedTime);
-        gamesystem.gameRestart();
+        gamesystem.stageRestart();
 
     }
 
+    //Up button 눌림
     public void UpButtonClicked()
     {
         
@@ -87,6 +90,7 @@ public class Playermove: MonoBehaviour
         Debug.Log(temp);
     }
 
+    //Left button 눌림
     public void LeftButtonClicked()
     {
         order[ordercount++] = 1;
@@ -100,6 +104,8 @@ public class Playermove: MonoBehaviour
         temp += "]";
         Debug.Log(temp);
     }
+
+    //Right button 눌림
     public void RightButtonClicked()
     {
         order[ordercount++] = 2;
@@ -114,11 +120,13 @@ public class Playermove: MonoBehaviour
         Debug.Log(temp);
     }
 
+    //Reset button 눌림
     public void ResetButtonClicked()
     {
         ordercount = 0;
     }
 
+    //아두이노 이용한 움직임
     public void movewithArduino(int num)
     {
         if(num == 0) transform.Translate(new Vector2(0, (float) -0.75));

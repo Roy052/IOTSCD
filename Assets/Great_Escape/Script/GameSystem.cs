@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO.Ports;
 
+//게임의 상태 enum
 public enum GameState { START, ORDERING, MOVEMENT, SUCCESS, FAIL}
 public class GameSystem : MonoBehaviour
 {
@@ -23,12 +24,16 @@ public class GameSystem : MonoBehaviour
     [SerializeField]
     private int baudrate = 9600;
 
+    //UI용 객체
     GameObject[] buttons;
     DirectionButton temp;
+    public Text tutorialMessage;
     public Text orderMessage;
     CountdownTimer countdown;
 
+    //게임 상황
     public GameState state;
+
     GameObject player;
     // Start is called before the first frame update
     void Start()
@@ -53,35 +58,48 @@ public class GameSystem : MonoBehaviour
             throw;
         }
 
-
         StartCoroutine(SetUpGame());
         
     }
 
+    //메세지 지우고 카운트다운 시작.
     IEnumerator SetUpGame()
     {
         Debug.Log("Entered");
         yield return new WaitForSeconds(1);
-        Text.Destroy(orderMessage);
+        Text.Destroy(tutorialMessage);
         countdown.Active = true;
+
+        state = GameState.ORDERING;
     }
 
+    //시간이 끝났을 때 CountDownTimer가 호출
     public void TimeOver()
     {
-
+        //버튼 별로 삭제
         for (int i = 0; i < 4; i++)
         {
             Debug.Log(buttons[i].name);
             buttons[i].GetComponent<DirectionButton>().TimeOver();
 
         }
+
+        //플레이어 움직임
         StartCoroutine(GameObject.FindGameObjectWithTag("Player").GetComponent<Playermove>().Movement());
+        state = GameState.MOVEMENT;
     }
     
-    public void gameRestart()
+    //성공하지 못했을 때, 스테이지 재시작
+    public void stageRestart()
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+    }
+
+    //스테이지 클리어
+    public void stageClear()
+    {
+        SceneManager.LoadScene("geSuccess");
     }
 
     // Update is called once per frame
