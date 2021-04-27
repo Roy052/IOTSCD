@@ -23,7 +23,7 @@ public class Playermove: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        order = new int[10];
+        order = new int[20];
         gamesystem = GameObject.FindGameObjectWithTag("GameSystem").GetComponent<GameSystem>();
     }
 
