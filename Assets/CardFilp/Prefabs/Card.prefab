@@ -71,12 +71,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0a4fb358c35674d4e8b1e98d1ff57b71, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0330bbf669fbbbd4cb4355c1ff509830, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.36, y: 1.36}
+  m_Size: {x: 1.92, y: 1.92}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -95,15 +95,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardImages:
-  - {fileID: 21300000, guid: 7dd3c2cf2d6a3314ab19b8b7e60dc9d3, type: 3}
-  - {fileID: 21300000, guid: 0de4f891124d6cf46902b74c0851c49b, type: 3}
-  - {fileID: 21300000, guid: 82b30b66907582240abbbfb7194a81ad, type: 3}
-  - {fileID: 21300000, guid: 108a7a6ba5bccc844a23ba87662ec70c, type: 3}
-  - {fileID: 21300000, guid: 7feb55dca44edd740a785dcc3fdf2156, type: 3}
-  - {fileID: 21300000, guid: 997f5958ab0829447b778268222e64c4, type: 3}
-  - {fileID: 21300000, guid: b9895378a2dd6ca4cb62bed69d1f1c4d, type: 3}
-  - {fileID: 21300000, guid: a8f82225e59e93146829ce30067d3a36, type: 3}
-  - {fileID: 21300000, guid: 12b179b62de104f499b3046738ff7c8f, type: 3}
-  - {fileID: 21300000, guid: c1eeccabf65cd954fa7b782673e2e5f8, type: 3}
-  backImage: {fileID: 21300000, guid: 59444a3721cd6364c964e6a444c17603, type: 3}
+  - {fileID: 21300000, guid: 2302600dfaaf13e4584ae752b3bc6838, type: 3}
+  - {fileID: 21300000, guid: a7200f3d1d56fa94cae1a5144ea9796e, type: 3}
+  - {fileID: 21300000, guid: 34eeebc985802714d9cabe644e783d03, type: 3}
+  - {fileID: 21300000, guid: d762026424a2f904f85da6a70d972d18, type: 3}
+  - {fileID: 21300000, guid: 5a2fd7dd25ed4bd4882cf061d253543d, type: 3}
+  - {fileID: 21300000, guid: 61ce7359d93577e40b2050bd129d7828, type: 3}
+  - {fileID: 21300000, guid: 92d370b0b77edd24eae8a985af682ac0, type: 3}
+  - {fileID: 21300000, guid: 0adcaf0e9e59f5447b334c31c1c7fe3b, type: 3}
+  - {fileID: 21300000, guid: b65a44dd6ddd45e46a143c9190a0b8cb, type: 3}
+  - {fileID: 21300000, guid: 9757bad0b856d804bb99c86d2d9fbb55, type: 3}
+  backImage: {fileID: 21300000, guid: 0330bbf669fbbbd4cb4355c1ff509830, type: 3}
   clearImage: {fileID: 21300000, guid: 0a4fb358c35674d4e8b1e98d1ff57b71, type: 3}
