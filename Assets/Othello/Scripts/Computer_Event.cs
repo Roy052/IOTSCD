@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class Computer_Event : MonoBehaviour
 {
-    int difficult = 2;
-    int[,] store = GameObject.Find("MainEvent").GetComponent<MainEvent>().store;
-    int[,] board = GameObject.Find("MainEvent").GetComponent<MainEvent>().board;
+    public int difficult = 1;
+    int[,] store =new int[8,8] ;
     struct Coordinate
     {
         public int x;
@@ -115,7 +114,7 @@ public class Computer_Event : MonoBehaviour
             returnvalue.y = y;
             return returnvalue;
         }
-
+        
         else if (depth % 2 == 1)
         {//플레이어 턴
             bool bflag = false;
@@ -219,7 +218,7 @@ public class Computer_Event : MonoBehaviour
     {
         
     }
-    public void compute()
+    public void compute(int[,] board)
     {
         Coordinate result;
 
@@ -233,5 +232,7 @@ public class Computer_Event : MonoBehaviour
         result = dfs(-1, -1, 0, -99999, 99999);
 
         GameObject.Find("MainEvent").GetComponent<MainEvent>().action(board, result.x, result.y, 2, 0);
+
+
     }
 }
