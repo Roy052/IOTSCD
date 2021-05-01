@@ -136,7 +136,7 @@ PrefabInstance:
     - target: {fileID: 4216548815269059583, guid: ba6403c26bed79c4aafe9231170aac75,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.33
+      value: 5.38
       objectReference: {fileID: 0}
     - target: {fileID: 4216548815269059583, guid: ba6403c26bed79c4aafe9231170aac75,
         type: 3}
@@ -190,6 +190,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6403c26bed79c4aafe9231170aac75, type: 3}
+--- !u!114 &155210263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5250685136054229030, guid: 30e26c6c366821d4f843847ccac90cd1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5250685134809243803}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &403378947 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4216548815269059583, guid: ba6403c26bed79c4aafe9231170aac75,
@@ -553,12 +565,12 @@ PrefabInstance:
     - target: {fileID: 5250685135434857906, guid: 30e26c6c366821d4f843847ccac90cd1,
         type: 3}
       propertyPath: startingTime
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5250685135434857916, guid: 30e26c6c366821d4f843847ccac90cd1,
         type: 3}
       propertyPath: m_Text
-      value: 20.0
+      value: 10.0
       objectReference: {fileID: 0}
     - target: {fileID: 5250685135949828994, guid: 30e26c6c366821d4f843847ccac90cd1,
         type: 3}
@@ -812,6 +824,11 @@ PrefabInstance:
         type: 3}
       propertyPath: orderMessage
       value: 
+      objectReference: {fileID: 155210263}
+    - target: {fileID: 6197451652444339511, guid: f7594ba4641706c4399027384f8981e6,
+        type: 3}
+      propertyPath: tutorialMessage
+      value: 
       objectReference: {fileID: 890362156}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7594ba4641706c4399027384f8981e6, type: 3}
@@ -830,7 +847,7 @@ PrefabInstance:
     - target: {fileID: 4216548815269059583, guid: ba6403c26bed79c4aafe9231170aac75,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.87
+      value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: 4216548815269059583, guid: ba6403c26bed79c4aafe9231170aac75,
         type: 3}
