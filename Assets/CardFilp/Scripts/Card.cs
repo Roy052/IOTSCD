@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
 public enum CardType{
-    zero = 0, one, two, three, four, five, six, seven, eight, nine,
-    Back = 10,
-    Clear = 100
+    zero = 0, one, two, three, four, five, six, seven, eight, nine, ten, eleven,
+    Back = 100,
+    Clear = 1000
 }
 public class Card : MonoBehaviour
 {

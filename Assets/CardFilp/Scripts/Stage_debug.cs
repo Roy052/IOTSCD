@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Stage : MonoBehaviour
+public class Stage_debug : MonoBehaviour
 {
     [SerializeField]
     private GameObject cardPrefab;

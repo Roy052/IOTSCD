@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    private Stage stage;
+    private Stage_debug stage; //debug
     private Camera mainCamera;
 
     private float wDelta = 0.4f;

@@ -105,5 +105,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0adcaf0e9e59f5447b334c31c1c7fe3b, type: 3}
   - {fileID: 21300000, guid: b65a44dd6ddd45e46a143c9190a0b8cb, type: 3}
   - {fileID: 21300000, guid: 9757bad0b856d804bb99c86d2d9fbb55, type: 3}
+  - {fileID: 21300000, guid: 39b700ec318fab245b4c625c85a6a9df, type: 3}
+  - {fileID: 21300000, guid: 4b762746086a10047b25342f3d562af5, type: 3}
   backImage: {fileID: 21300000, guid: 0330bbf669fbbbd4cb4355c1ff509830, type: 3}
   clearImage: {fileID: 21300000, guid: 0a4fb358c35674d4e8b1e98d1ff57b71, type: 3}

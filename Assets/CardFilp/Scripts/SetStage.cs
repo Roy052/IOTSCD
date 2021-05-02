@@ -7,31 +7,21 @@ public class SetStage : MonoBehaviour
 {
     [SerializeField]
     private GameObject cardPrefab;
+    [SerializeField]
+    private GameManager gm; //debug
 
-    [SerializeField]
-    private TMP_InputField inputWidth;
-    [SerializeField]
-    private TMP_InputField inputHeight;
+
     public int Width{private set; get;} = 4;
     public int Height{private set; get;} = 4;
 
     private void Awake()
     {
-        inputWidth.text = Width.ToString();
-        inputHeight.text = Height.ToString();
-        // GenerateStage();    
+        Width = gm.col;
+        Height = gm.row;
     }
 
     public void GenerateStage()
     {
-        int width, height;
-
-        int.TryParse(inputWidth.text, out width);
-        int.TryParse(inputHeight.text, out height);
-
-        Width = width;
-        Height = height;
-
         for(int y = 0; y < Height; y++)
         {
             for(int x = 0; x < Width; x++)
