@@ -9,6 +9,8 @@ TagManager:
   - Button
   - GameSystem
   - Countdown
+  - VerticalPoint
+  - HorizontalPoint
   layers:
   - Default
   - TransparentFX
