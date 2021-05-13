@@ -34,7 +34,9 @@ public class GameSystem : MonoBehaviour
     //게임 상황
     public GameState state;
 
+    //게임 객체
     GameObject player;
+    GameObject startPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,29 +46,29 @@ public class GameSystem : MonoBehaviour
         buttons = GameObject.FindGameObjectsWithTag("Button");
         countdown = GameObject.FindGameObjectWithTag("Countdown").GetComponent<CountdownTimer>();
         player = GameObject.FindGameObjectWithTag("Player");
+        startPoint = GameObject.FindGameObjectWithTag("Start");
 
         //시리얼 통신
         try
         {
-            serial = new SerialPort(portNumber.ToString(), baudrate, Parity.None, 8, StopBits.One);        
+            serial = new SerialPort(portNumber.ToString(), baudrate, Parity.None, 8, StopBits.One);
             //serial.Open();
             serial.ReadTimeout = 5;
         }
-        catch(MissingComponentException e)
+        catch (MissingComponentException e)
         {
             Debug.Log(e);
             throw;
         }
 
         StartCoroutine(SetUpGame());
-        
+
     }
 
     //메세지 지우고 카운트다운 시작.
     IEnumerator SetUpGame()
     {
-        Debug.Log("Entered");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds((float) 1.5);
         Text.Destroy(tutorialMessage);
         countdown.Active = true;
 
@@ -76,24 +78,41 @@ public class GameSystem : MonoBehaviour
     //시간이 끝났을 때 CountDownTimer가 호출
     public void TimeOver()
     {
+        state = GameState.MOVEMENT;
         //버튼 별로 삭제
         for (int i = 0; i < 4; i++)
         {
             Debug.Log(buttons[i].name);
-            buttons[i].GetComponent<DirectionButton>().TimeOver();
-
+            buttons[i].SetActive(false);
         }
 
         //플레이어 움직임
         StartCoroutine(GameObject.FindGameObjectWithTag("Player").GetComponent<Playermove>().Movement());
-        state = GameState.MOVEMENT;
+
     }
-    
+
     //성공하지 못했을 때, 스테이지 재시작
     public void stageRestart()
     {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        state = GameState.FAIL;
+
+        //버튼 불러오기
+        for (int i = 0; i < 4; i++)
+        {
+            buttons[i].SetActive(true);
+        }
+
+        //order 리셋
+        player.GetComponent<Playermove>().ResetButtonClicked();
+        orderMessage.text = "";
+
+        //캐릭터 움직이기
+        player.transform.position = new Vector2((float)8.12, (float)-4.11);
+
+
+        //시간 되돌리기
+        countdown.Retry();
+        countdown.Active = true;
     }
 
     //스테이지 클리어
@@ -121,6 +140,6 @@ public class GameSystem : MonoBehaviour
             }
             Debug.Log("Connected");*/
         }
-            
     }
 }
+    

@@ -124,6 +124,7 @@ public class Playermove: MonoBehaviour
     public void ResetButtonClicked()
     {
         ordercount = 0;
+        direction = 0;
     }
 
     //아두이노 이용한 움직임

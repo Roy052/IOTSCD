@@ -40,10 +40,6 @@ public class DirectionButton : MonoBehaviour
         }
     }
 
-    public void TimeOver()
-    {
-        gameObject.SetActive(false);
-    }
 
     void Start()
     {

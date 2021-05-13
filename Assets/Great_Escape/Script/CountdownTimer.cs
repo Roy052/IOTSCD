@@ -19,6 +19,13 @@ public class CountdownTimer : MonoBehaviour
         gamesystem = GameObject.FindGameObjectWithTag("GameSystem").GetComponent<GameSystem>();
     }
 
+    public void Retry()
+    {
+        currentTime = startingTime;
+        flag = false;
+        Active = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
