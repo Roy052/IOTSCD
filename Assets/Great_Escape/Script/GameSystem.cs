@@ -29,14 +29,18 @@ public class GameSystem : MonoBehaviour
     DirectionButton temp;
     public Text tutorialMessage;
     public Text orderMessage;
+    public Text scoreMessage;
     CountdownTimer countdown;
 
     //게임 상황
     public GameState state;
+    public static int score = 0;
+    int failCount = 0;
 
     //게임 객체
     GameObject player;
     GameObject startPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +75,7 @@ public class GameSystem : MonoBehaviour
         yield return new WaitForSeconds((float) 1.5);
         Text.Destroy(tutorialMessage);
         countdown.Active = true;
+        failCount = 0;
 
         state = GameState.ORDERING;
     }
@@ -87,7 +92,7 @@ public class GameSystem : MonoBehaviour
         }
 
         //플레이어 움직임
-        StartCoroutine(GameObject.FindGameObjectWithTag("Player").GetComponent<Playermove>().Movement());
+        StartCoroutine(player.GetComponent<Playermove>().Movement());
 
     }
 
@@ -95,6 +100,7 @@ public class GameSystem : MonoBehaviour
     public void stageRestart()
     {
         state = GameState.FAIL;
+        failCount += 1;
 
         //버튼 불러오기
         for (int i = 0; i < 4; i++)
@@ -118,12 +124,15 @@ public class GameSystem : MonoBehaviour
     //스테이지 클리어
     public void stageClear()
     {
+        score += 1000 - (failCount * 100);
+        player.GetComponent<Playermove>().ResetButtonClicked();
         SceneManager.LoadScene("geSuccess");
     }
 
     // Update is called once per frame
     void Update()
     {
+        scoreMessage.text = "Score : " + score;
         //시리얼 값 받아서 로그 찍기
         if (serial.IsOpen)
         {
