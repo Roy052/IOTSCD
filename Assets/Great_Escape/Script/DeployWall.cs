@@ -50,7 +50,7 @@ public class DeployWall : MonoBehaviour
     {
         int count = 0, number;
 
-        while(count <= Verticalpoints.Length / 2 - 1)
+        while(count <= Verticalpoints.Length / 2 + 1)
         {
             number = Random.Range(0, Verticalpoints.Length);
             vGenNum[number] = false;
@@ -58,7 +58,7 @@ public class DeployWall : MonoBehaviour
         }
 
         count = 0;
-        while (count <= Horizontalpoints.Length / 2 - 1)
+        while (count <= Horizontalpoints.Length / 2 + 1)
         {
             number = Random.Range(0, Horizontalpoints.Length);
             hGenNum[number] = false;

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6197451652444339504}
   - component: {fileID: 6197451652444339511}
+  - component: {fileID: 5122171009507923384}
   m_Layer: 0
   m_Name: GameSystem
   m_TagString: GameSystem
@@ -47,4 +48,23 @@ MonoBehaviour:
   baudrate: 9600
   tutorialMessage: {fileID: 0}
   orderMessage: {fileID: 0}
+  scoreMessage: {fileID: 0}
   state: 0
+--- !u!114 &5122171009507923384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6197451652444339510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ebc341bd0091b4d801132503a0ed55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Wall_Vertical: {fileID: 7762534020188380434, guid: ba6403c26bed79c4aafe9231170aac75,
+    type: 3}
+  Wall_Horizontal: {fileID: 6304152106927359948, guid: 24c82d5ed32efc94e84f0aacd18e4027,
+    type: 3}
+  Verticalpoints: []
+  Horizontalpoints: []

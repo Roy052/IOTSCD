@@ -36,6 +36,7 @@ public class GameSystem : MonoBehaviour
     public GameState state;
     public static int score = 0;
     int failCount = 0;
+    public static int currentStageNum = 1;
 
     //게임 객체
     GameObject player;
@@ -86,8 +87,7 @@ public class GameSystem : MonoBehaviour
         state = GameState.MOVEMENT;
         //버튼 별로 삭제
         for (int i = 0; i < 4; i++)
-        {
-            Debug.Log(buttons[i].name);
+        { 
             buttons[i].SetActive(false);
         }
 
@@ -125,8 +125,12 @@ public class GameSystem : MonoBehaviour
     public void stageClear()
     {
         score += 1000 - (failCount * 100);
+        failCount = 0;
         player.GetComponent<Playermove>().ResetButtonClicked();
-        SceneManager.LoadScene("geSuccess");
+        currentStageNum += 1;
+        if (currentStageNum >= 6)
+            SceneManager.LoadScene("geSuccess");
+        else SceneManager.LoadScene("ge" + currentStageNum);
     }
 
     // Update is called once per frame
@@ -134,11 +138,11 @@ public class GameSystem : MonoBehaviour
     {
         scoreMessage.text = "Score : " + score;
         //시리얼 값 받아서 로그 찍기
-        if (serial.IsOpen)
+        /*if (serial.IsOpen)
         {
             player.GetComponent<Playermove>().movewithArduino(serial.ReadByte());
             //Debug.Log(serial.ReadByte());
-            /*try
+            try
             {
                 Debug.Log(serial.ReadByte());
             }
@@ -147,8 +151,8 @@ public class GameSystem : MonoBehaviour
                 Debug.Log(e);
                 throw;
             }
-            Debug.Log("Connected");*/
-        }
+            Debug.Log("Connected");
+        }*/
     }
 }
     
