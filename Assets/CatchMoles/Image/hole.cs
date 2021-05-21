@@ -8,6 +8,8 @@ public class hole : MonoBehaviour
     public int row;
     public int col;
     public static int[,] moleMap = new int[3,3];
+    public Score scoreInstance;
+    public static bool playable = false;
 
     public Sprite Sprite_Hole;
     public Sprite Sprite_Catchable;
@@ -26,8 +28,11 @@ public class hole : MonoBehaviour
         pos = this.gameObject.transform.position;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = Sprite_Hole;
+    }
 
-        Invoke("BecomeMole", 1.0f);
+    private void Awake()
+    {
+        GameManage.instance.addHoleInstance(this, row, col);
     }
 
     // Update is called once per frame
@@ -38,45 +43,51 @@ public class hole : MonoBehaviour
 
     void BecomeMole()
     {
-        int rand = (int)Random.Range(0, 100);
-        
-        if (rand < prob && moleMap[row, col] == 0)
+        if (hole.playable)
         {
-            moleMap[row,col] = 1;
-            Debug.Log(row + ", " + col);
-            spriteRenderer.sprite = Sprite_Catchable;
-            //this.transform.localPosition = new Vector3(pos.x - 4, pos.y, pos.z);
+            int rand = (int)Random.Range(0, 100);
 
-            /*
-            mole instance = Instantiate(obj, new Vector3(pos.x - 0.03f, pos.y + 0.3f, pos.z - 1), Quaternion.identity);
-            instance.transform.localScale = new Vector3(1.2f, 1.2f, 1);
-            instance.row = this.row;
-            instance.col = this.col;
-            */
+            if (rand < prob && moleMap[row, col] == 0)
+            {
+                moleMap[row, col] = 1;
+                spriteRenderer.sprite = Sprite_Catchable;
+            }
+            Invoke("BecomeMole", 1.0f);
         }
-        Invoke("BecomeMole", 1.0f);
     }
 
     private void OnMouseDown()
     {
-        if (moleMap[row, col] == 1)
+        if (hole.playable)
         {
-            Debug.Log("꺅");
-            moleMap[row, col] = 2;
-            //this.transform.localPosition = new Vector3(pos.x + 4, pos.y, pos.z);
-            spriteRenderer.sprite = Sprite_Catched;
-            Invoke("AfterCatched", 0.1f);
+            if (moleMap[row, col] == 1)
+            {
+                moleMap[row, col] = 2;
+                scoreInstance.addScore(100);
+
+                spriteRenderer.sprite = Sprite_Catched;
+                Invoke("AfterCatched", 0.1f);
+            }
         }
     }
 
     private void AfterCatched()
     {
-        spriteRenderer.sprite = Sprite_Disappear;
-        Invoke("GoIdle", 0.1f);
+        if (hole.playable)
+        {
+            spriteRenderer.sprite = Sprite_Disappear;
+            Invoke("GoIdle", 0.1f);
+        }
     }
     private void GoIdle()
     {
         spriteRenderer.sprite = Sprite_Hole;
         moleMap[row, col] = 0;
+    }
+
+    public void allStop()
+    {
+        hole.playable = false;
+        GoIdle();
     }
 }
