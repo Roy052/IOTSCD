@@ -29,14 +29,17 @@ public class GameCount : MonoBehaviour
 
     void countdown()
     {
-        if (time > -1)
+        time -= 1;
+        if (time > 0)
         {
-            time -= 1;
             countText.text = time.ToString();
             Invoke("countdown", 1.0f);
         }
         if (time == 0)
+        {
             countText.text = "GAME START!!";
+            Invoke("countdown", 1.0f);
+        }
         else if (time == -1)
         {
             countText.text = "";

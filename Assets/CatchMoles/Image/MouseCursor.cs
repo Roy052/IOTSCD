@@ -12,8 +12,10 @@ public class MouseCursor : MonoBehaviour
     //텍스처의 어느부분을 마우스의 좌표로 할 것인지 텍스처의
     //좌표를 입력받습니다.
     public Vector2 adjustHotSpot = Vector2.zero;
+    public Vector2 adjustHotSpot_rotate = Vector2.zero;
     //내부에서 사용할 필드를 선업합니다.
     private Vector2 hotSpot;
+    private Vector2 hotSpot_rotate;
     public void Start()
     {
 
@@ -48,7 +50,7 @@ public class MouseCursor : MonoBehaviour
                 hotSpot = adjustHotSpot;
             }
             //이제 새로운 마우스 커서를 화면에 표시합니다.
-            Cursor.SetCursor(cursorTexture, hotSpot, CursorMode.Auto);
+            Cursor.SetCursor(cursorTexture, hotSpot, CursorMode.ForceSoftware);
         }
         else
         {
@@ -56,17 +58,17 @@ public class MouseCursor : MonoBehaviour
             //텍스처의 폭과 높이의 1/2을 hot Spot 좌표로 입력합니다.
             if (hotSpotIsCenter)
             {
-                hotSpot.x = cursorTexture_rotate.width / 2;
-                hotSpot.y = cursorTexture_rotate.height / 2;
+                hotSpot_rotate.x = cursorTexture_rotate.width / 2;
+                hotSpot_rotate.y = cursorTexture_rotate.height / 2;
             }
             else
             {
                 //중심을 사용하지 않을 경우 Adjust Hot Spot으로 입력 받은
                 //것을 사용합니다.
-                hotSpot = adjustHotSpot;
+                hotSpot_rotate = adjustHotSpot_rotate;
             }
             //이제 새로운 마우스 커서를 화면에 표시합니다.
-            Cursor.SetCursor(cursorTexture_rotate, hotSpot, CursorMode.Auto);
+            Cursor.SetCursor(cursorTexture_rotate, hotSpot_rotate, CursorMode.ForceSoftware);
         }
     }
 }

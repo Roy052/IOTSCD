@@ -41,7 +41,7 @@ public class GameManage : MonoBehaviour
         }
     }
 
-    public void addHoleInstance(hole inst, int row, int col)
+    public static void addHoleInstance(hole inst, int row, int col)
     {
         holeInstArray[row * 3 + col] = inst;
     }
