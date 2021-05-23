@@ -18,7 +18,7 @@ public class hole : MonoBehaviour
 
     public static int[,] moleMap = new int[3, 3];
     public static bool playable = false;
-    Vector3 myPos;
+    Vector3 myPos, leftbottom, righttop;
     double[] collRec = new double[4];  // xmin xmax ymin ymax
 
     [Header("초당 생성 확률")]
@@ -30,12 +30,9 @@ public class hole : MonoBehaviour
         // 스프라이트 변경용 변수 설정
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = Sprite_Hole;
-        myPos = Camera.main.WorldToScreenPoint(transform.position);
-        /*myPos = this.gameObject.transform.localPosition;
-        collRec[0] = myPos.x - 2.5;
-        collRec[1] = myPos.x + 2.5;
-        collRec[2] = myPos.y - 1.2;
-        collRec[3] = myPos.y + 3.8;*/
+        myPos = transform.position;
+        leftbottom = Camera.main.WorldToScreenPoint(myPos + new Vector3(-1.25f, -0.405f, 0));
+        righttop = Camera.main.WorldToScreenPoint(myPos + new Vector3(1.25f, 2.095f, 0));
     }
 
     private void Awake()
@@ -47,13 +44,13 @@ public class hole : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*Vector2 MousePos = Input.mousePosition;
-        if (MousePos.x > collRec[0] && MousePos.x < collRec[1] && MousePos.y > collRec[2] && MousePos.y < collRec[3])
+        Vector2 MousePos = Input.mousePosition;
+        if (MousePos.x > leftbottom.x && MousePos.x < righttop.x && MousePos.y > leftbottom.y && MousePos.y < righttop.y && moleMap[row, col] < 2)
         {
-            transform.localScale = new Vector3(1.2f, 1.2f, 1);
+            transform.localScale = new Vector3(1.3f, 1.3f, 1);
         }
         else
-            transform.localScale = new Vector3(1, 1, 1);*/
+            transform.localScale = new Vector3(1, 1, 1);
     }
 
     void BecomeMole()
