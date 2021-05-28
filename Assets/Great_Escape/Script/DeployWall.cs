@@ -15,8 +15,8 @@ public class DeployWall : MonoBehaviour
     {
         Verticalpoints = GameObject.FindGameObjectsWithTag("VerticalPoint");
         Horizontalpoints = GameObject.FindGameObjectsWithTag("HorizontalPoint");
-        vGenNum = new bool[9];
-        hGenNum = new bool[8];
+        vGenNum = new bool[12];
+        hGenNum = new bool[10];
         for (int i = 0; i < Verticalpoints.Length; i++)
             vGenNum[i] = true;
         for (int i = 0; i < Horizontalpoints.Length; i++)
@@ -50,19 +50,26 @@ public class DeployWall : MonoBehaviour
     {
         int count = 0, number;
 
-        while(count <= Verticalpoints.Length / 2 + 1)
+        while(count <= Verticalpoints.Length / 2 + 3)
         {
             number = Random.Range(0, Verticalpoints.Length);
-            vGenNum[number] = false;
-            count++;
+            if (vGenNum[number] != false)
+            {
+                vGenNum[number] = false;
+                count++;
+            }
         }
 
         count = 0;
-        while (count <= Horizontalpoints.Length / 2 + 1)
+        while (count <= Horizontalpoints.Length / 2 + 2)
         {
             number = Random.Range(0, Horizontalpoints.Length);
-            hGenNum[number] = false;
-            count++;
+            if(hGenNum[number] != false)
+            {
+
+                hGenNum[number] = false;
+                int v = count++;
+            }
         }
     }
     // Update is called once per frame
