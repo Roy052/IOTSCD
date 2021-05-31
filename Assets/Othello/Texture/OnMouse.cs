@@ -22,8 +22,10 @@ public class OnMouse : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if(MainEvent.now%2==0)
-            mouse_obj=Instantiate(trans_white, this.gameObject.transform.position, Quaternion.identity);
+        if (MainEvent.now % 2 == 0)
+        {
+            mouse_obj = Instantiate(trans_white, this.gameObject.transform.position, Quaternion.identity);
+        }
     }
 
     private void OnMouseDown()
