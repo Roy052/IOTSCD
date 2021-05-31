@@ -112,7 +112,7 @@ public class Computer_Event : MonoBehaviour
                             }
                         }
                         // 돌을 둬서 배열 변환시킨후 다음 depth로 dfs시킴
-                        GameObject.Find("MainEvent").GetComponent<MainEvent>().action(store, i, j, 3-player_color);
+                        GameObject.Find("MainEvent").GetComponent<MainEvent>().action(store, i, j, 3-player_color,0);
                         storepair = dfs(i, j, depth + 1, alpha, beta);
 
                         //alpha값을 갱신 (computer에게 이익이 되는 최적의 값)
@@ -162,7 +162,7 @@ public class Computer_Event : MonoBehaviour
                                 store[l, k] = store1[l, k];
                             }
                         }
-                        GameObject.Find("MainEvent").GetComponent<MainEvent>().action(store, i, j, player_color);
+                        GameObject.Find("MainEvent").GetComponent<MainEvent>().action(store, i, j, player_color,0);
                         storepair = dfs(x, y, depth + 1, alpha, beta);
                         //beta값을 갱신 (player에게 이익이 되는 최적의 값)
                         if (storepair.value < beta)
@@ -222,7 +222,7 @@ public class Computer_Event : MonoBehaviour
                             }
                         }
 
-                        GameObject.Find("MainEvent").GetComponent<MainEvent>().action(store, i, j, 3-player_color);
+                        GameObject.Find("MainEvent").GetComponent<MainEvent>().action(store, i, j, 3-player_color,0);
                         storepair = dfs(x, y, depth + 1, alpha, beta);
                         if (storepair.value > alpha)
                         {
@@ -282,8 +282,7 @@ public class Computer_Event : MonoBehaviour
         //상대방이 최선의 수를 둔다고 가정하고 자신의 초기 승률은 -inf로 가정
         result = dfs(-1, -1, 0, -999999, 999999);
 
-        GameObject.Find("MainEvent").GetComponent<MainEvent>().action(board, result.x, result.y, 2);
-
+        GameObject.Find("MainEvent").GetComponent<MainEvent>().action(board, result.x, result.y, 3-player_color,1);
 
     }
 }

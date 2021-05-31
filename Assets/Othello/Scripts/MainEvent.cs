@@ -6,14 +6,16 @@ using UnityEngine.UI;
 public class MainEvent : MonoBehaviour
 {
     public GameObject[,] stone = new GameObject[8,8];
+    public GameObject[,] origin_stone = new GameObject[8, 8];
     //3-player_color== computer_color
     public int turn = 0,player_color=1,skip=0;
     //board 안에 nothing,white,black 저장
     public int[,] board = new int[8, 8];
+    private int[,] origin = new int[8, 8];
     //8방향으로 확인하기위한 배열
     int[] updown = { -1,-1,0,1,1,1,0,-1 }, lright = { 0,1,1,1,0,-1,-1,-1 };
     float timer=0.0f;
-    int waitingTime=1;
+    int waitingTime=3;
     [SerializeField]
     private GameObject[] prefabArray;
     private GameObject target;
@@ -97,7 +99,7 @@ public class MainEvent : MonoBehaviour
     }
 
     //find_input 함수랑 거의 똑같음 바꿀 수 있는 돌을 queue에 넣어 한번에 바꾸는 식만 추가 됨 
-    public int action(int[,] board, int x, int y, int color)
+    public int action(int[,] board, int x, int y, int color,int check)
     {
         int ans = 0;
         
@@ -138,7 +140,12 @@ public class MainEvent : MonoBehaviour
                     while (que.Count>0)
                     {
                         //queue에 있는 값들을 board에서 플레이 턴 color로 바꿈 
-                        board[que.Peek().x,que.Peek().y] = color;                       
+                        board[que.Peek().x,que.Peek().y] = color;
+                        if (check == 1)
+                        {
+                            stone[que.Peek().x, que.Peek().y].GetComponent<blackanimate>().flip(que.Peek().x, que.Peek().y);
+
+                        }
                         que.Dequeue();
                     }
                     break;
@@ -204,12 +211,28 @@ public class MainEvent : MonoBehaviour
         return -1;
     }
 
+    public void create_Object(int x, int y)
+    {
+        stone[x, y] = Instantiate(prefabArray[board[x,y]], stone[x, y].transform.position, Quaternion.identity);
+    }
+
     void Update()
     {
+
         int x, y, check_turn = 0;
         //플레이어 턴
         if (turn % 2+1 == player_color)
         {
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    origin[i, j] = board[i, j];
+                    origin_stone[i, j] = stone[i, j];
+                    if (board[i, j] == 1 || board[i, j] == 2)
+                        stone[i, j].GetComponent<Animator>().SetBool("Getback", false);
+                }
+            }
             //마우스 눌렀을 때
             if (Input.GetMouseButtonDown(0))
             {
@@ -231,26 +254,26 @@ public class MainEvent : MonoBehaviour
                     if (find_input(board, x, y, player_color))
                     {
                         //돌 바꾸기
-                        action(board, x, y, player_color);
+                        action(board, x, y, player_color,1);
                         //가중치 계산 위해 turn 증가시켜줌
                         turn++;
                         for (int i = 0; i < 8; i++)
                         {
                             for (int j = 0; j < 8; j++)
                             {
-                                //기존 인스턴스 삭제
-                                Destroy(stone[i, j]);
-                                if (find_input(board, i, j, 3-player_color))
+                                if (find_input(board, i, j, 3 - player_color))
                                 {
                                     //다음 턴이 둘 수 있는지 확인
                                     check_turn++;
                                     //놓을수 있는 '?' 인스턴스 넣기
-                                    stone[i, j] = Instantiate(prefabArray[3], stone[i, j].transform.position, Quaternion.identity); 
+                                    Destroy(stone[i, j]);
+                                    stone[i, j] = Instantiate(prefabArray[3], stone[i, j].transform.position, Quaternion.identity);
                                 }
-                                else
+                                else if (find_input(origin, i, j,player_color))
                                 {
-                                    //'nothing' 'black' 'white' 인스턴스 넣기
-                                    stone[i, j] = Instantiate(prefabArray[board[i, j]], stone[i, j].transform.position, Quaternion.identity); 
+                                    //놓을수 있는 '?' 인스턴스 넣기
+                                    Destroy(stone[i, j]);
+                                    stone[i, j] = Instantiate(prefabArray[board[i,j]], stone[i, j].transform.position, Quaternion.identity);
                                 }
                             }
                         }
@@ -277,18 +300,32 @@ public class MainEvent : MonoBehaviour
                         }
                     }
                     
-                    Debug.Log(x * 8 + y);
-                    Debug.Log(board[x, y]);
+                    //Debug.Log(x * 8 + y);
+                    //Debug.Log(board[x, y]);
                 }
             }
         }
+
         //컴퓨터 턴
         //위 코드랑 똑같음
         else
         {
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    origin[i, j] = board[i, j];
+                    origin_stone[i, j] = stone[i, j];
+                    if (board[i, j] == 1 || board[i, j] == 2)
+                        stone[i, j].GetComponent<Animator>().SetBool("Getback", false);
+                }
+            }
+
             //텀이 없이 두게되면 컴퓨터가 2턴 연속으로 둘 때 플레이어가 이해할 수 없으므로 1초의 텀을 둠
             timer += Time.deltaTime;
-            if (timer>waitingTime) {
+            if (timer > waitingTime)
+            {
                 timer = 0;
 
                 //alpha-beta 알고리즘 사용 후 action함수 사용 (compute함수안에 다 있음)
@@ -298,20 +335,23 @@ public class MainEvent : MonoBehaviour
                 {
                     for (int j = 0; j < 8; j++)
                     {
-                        Destroy(stone[i, j]); //기존 인스턴스 삭제
                         if (find_input(board, i, j, player_color))
                         {
+                            //다음 턴이 둘 수 있는지 확인
                             check_turn++;
-                            //놓을수 있는 ?? 표현하기
-                            stone[i, j] = Instantiate(prefabArray[3], stone[i, j].transform.position, Quaternion.identity); 
+                            //놓을수 있는 '?' 인스턴스 넣기
+                            Destroy(stone[i, j]);
+                            stone[i, j] = Instantiate(prefabArray[3], stone[i, j].transform.position, Quaternion.identity);
                         }
-                        else
+                        else if (find_input(origin, i, j, 3-player_color))
                         {
-                            //새로 인스턴스 넣기
+                            //놓을수 있는 '?' 인스턴스 넣기
+                            Destroy(stone[i, j]);
                             stone[i, j] = Instantiate(prefabArray[board[i, j]], stone[i, j].transform.position, Quaternion.identity);
                         }
                     }
                 }
+            
 
                 //상대가 둘 곳 없을 때 턴 넘기기
                 if (check_turn == 0)

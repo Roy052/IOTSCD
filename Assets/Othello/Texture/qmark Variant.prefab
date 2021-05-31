@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 2170979375994509876, guid: 2e36fd26651f19e4f990f523370ce6e9,
         type: 3}
       propertyPath: m_Name
-      value: qmark
+      value: qmark Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7901042416067905549, guid: 2e36fd26651f19e4f990f523370ce6e9,
         type: 3}
@@ -73,5 +73,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: d9b015de321d05043ba2c67ce5a29487,
         type: 3}
-    m_RemovedComponents: []
+    - target: {fileID: 8664004113243884056, guid: 2e36fd26651f19e4f990f523370ce6e9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8664004113243884056, guid: 2e36fd26651f19e4f990f523370ce6e9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2e36fd26651f19e4f990f523370ce6e9, type: 3}
