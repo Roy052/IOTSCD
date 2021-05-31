@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainEvent : MonoBehaviour
@@ -8,17 +9,19 @@ public class MainEvent : MonoBehaviour
     public GameObject[,] stone = new GameObject[8,8];
     public GameObject[,] origin_stone = new GameObject[8, 8];
     //3-player_color== computer_color
-    public int turn = 0,player_color=1,skip=0;
+    public static int now=4;
+    public int turn = 4,player_color=1,skip=0;
     //board 안에 nothing,white,black 저장
     public int[,] board = new int[8, 8];
     private int[,] origin = new int[8, 8];
     //8방향으로 확인하기위한 배열
     int[] updown = { -1,-1,0,1,1,1,0,-1 }, lright = { 0,1,1,1,0,-1,-1,-1 };
     float timer=0.0f;
-    int waitingTime=3;
+    int waitingTime=2;
     [SerializeField]
     private GameObject[] prefabArray;
     private GameObject target;
+
 
     //각 칸마다의 가중치
     int[,] valueary = new int[8, 8]{
@@ -180,7 +183,7 @@ public class MainEvent : MonoBehaviour
         {
             for (int j = 0; j < 8; j++)
             {
-                Vector3 position = new Vector3(-3.0f + j * 0.87f, -3.0f + i * 0.87f, 0);
+                Vector3 position = new Vector3(-4.45f + j * 1.12f, -3.9f + i * 1.12f, 0);
                 if (i >= 3 && i <= 4 && j >= 3 && j <= 4)
                 {
                     stone[i, j] = Instantiate(prefabArray[(j + i) % 2+1], position, Quaternion.identity);
@@ -219,7 +222,8 @@ public class MainEvent : MonoBehaviour
     void Update()
     {
 
-        int x, y, check_turn = 0;
+        int x, y, check_turn = 0,game_end=0;
+
         //플레이어 턴
         if (turn % 2+1 == player_color)
         {
@@ -231,8 +235,22 @@ public class MainEvent : MonoBehaviour
                     origin_stone[i, j] = stone[i, j];
                     if (board[i, j] == 1 || board[i, j] == 2)
                         stone[i, j].GetComponent<Animator>().SetBool("Getback", false);
+                    if (board[i, j] == 0)
+                    {
+                        game_end++;
+                    }
                 }
             }
+            if (game_end==0)
+            {
+                timer += Time.deltaTime;
+                if (timer > waitingTime)
+                {
+                    timer = 0;
+                    SceneManager.LoadScene("Game_End");
+                }
+            }
+            game_end = 0;
             //마우스 눌렀을 때
             if (Input.GetMouseButtonDown(0))
             {
@@ -244,7 +262,7 @@ public class MainEvent : MonoBehaviour
                 if (hit.collider != null)
                 { 
                     //히트 된 게임 오브젝트를 타겟으로 지정
-                    target = hit.collider.gameObject;  
+                    target = hit.collider.gameObject;
                     //타겟 게임 오브젝트 배열 index 구하기
                     x = GameObjectToindex(target);
                     y = x % 8;
@@ -257,6 +275,7 @@ public class MainEvent : MonoBehaviour
                         action(board, x, y, player_color,1);
                         //가중치 계산 위해 turn 증가시켜줌
                         turn++;
+                        now = turn;
                         for (int i = 0; i < 8; i++)
                         {
                             for (int j = 0; j < 8; j++)
@@ -283,6 +302,7 @@ public class MainEvent : MonoBehaviour
                         {
                             turn++;
                             skip++;
+                            now = turn;
                             for (int i = 0; i < 8; i++)
                             {
                                 for (int j = 0; j < 8; j++)
@@ -304,6 +324,8 @@ public class MainEvent : MonoBehaviour
                     //Debug.Log(board[x, y]);
                 }
             }
+
+            
         }
 
         //컴퓨터 턴
@@ -319,9 +341,23 @@ public class MainEvent : MonoBehaviour
                     origin_stone[i, j] = stone[i, j];
                     if (board[i, j] == 1 || board[i, j] == 2)
                         stone[i, j].GetComponent<Animator>().SetBool("Getback", false);
+                    if (board[i, j] == 0)
+                    {
+                        game_end++;
+                    }
                 }
             }
 
+            if (game_end == 0)
+            {
+                timer += Time.deltaTime;
+                if (timer > waitingTime)
+                {
+                    timer = 0;
+                    SceneManager.LoadScene("Game_End");
+                }
+            }
+            game_end = 0;
             //텀이 없이 두게되면 컴퓨터가 2턴 연속으로 둘 때 플레이어가 이해할 수 없으므로 1초의 텀을 둠
             timer += Time.deltaTime;
             if (timer > waitingTime)
@@ -331,6 +367,7 @@ public class MainEvent : MonoBehaviour
                 //alpha-beta 알고리즘 사용 후 action함수 사용 (compute함수안에 다 있음)
                 GameObject.Find("ComputerEvent").GetComponent<Computer_Event>().compute(board);
                 turn++;
+                now = turn;
                 for (int i = 0; i < 8; i++)
                 {
                     for (int j = 0; j < 8; j++)
@@ -358,6 +395,7 @@ public class MainEvent : MonoBehaviour
                 {
                     turn++;
                     skip++;
+                    now = turn;
                     for (int i = 0; i < 8; i++)
                     {
                         for (int j = 0; j < 8; j++)

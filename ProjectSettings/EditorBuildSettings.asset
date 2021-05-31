@@ -41,4 +41,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Great_Escape/Scene/ge5.unity
     guid: 591cdf342ea6e854989706dd2323bbc4
+  - enabled: 1
+    path: Assets/Othello/Scenes/Game_End.unity
+    guid: faa926af164035c48aafb5a09ceb38ca
+  - enabled: 1
+    path: Assets/Othello/Scenes/Single_Play.unity
+    guid: ff259bc0305243a409bc19b46e8f464d
+  - enabled: 1
+    path: Assets/Othello/Scenes/Online_Play.unity
+    guid: c6663e4ef0cabe649a4af79cb7f6a602
+  - enabled: 1
+    path: Assets/Othello/Scenes/Game_Start.unity
+    guid: a526656b4f3f7f64a94daf6b7fb1decd
   m_configObjects: {}
