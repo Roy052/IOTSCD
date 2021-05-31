@@ -16,8 +16,8 @@ public class SetStage : MonoBehaviour
 
     private void Awake()
     {
-        Width = gm.col;
-        Height = gm.row;
+        //Width = gm.col;
+        //Height = gm.row;
     }
 
     public void GenerateStage()

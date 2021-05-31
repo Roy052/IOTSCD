@@ -4,55 +4,72 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private SetStage stage;
-    public int[,] arr;
-    public int[,] check;
-    public int row, col;
-    private void Start()
-    {
-        arr = new int[12,12];
-        check = new int[12,12];
+    int[,] board;  //보드판
+    bool[,] check; //1. setup때 카드 넣기, 2. 이 카드가 이미 열려있는가?
+    int[] list;  //카드 종류 
+    GameObject[] Cards;
 
-        setBoard(row, col,row*col*3);
-        //debug
-        for(int i=0;i<row;i++)
-        {
-            for(int j=0;j<col;j++)
-            {
-                Debug.Log(arr[i,j]);
-            }
-        }
-        stage.GenerateStage();
+    void Start()
+    {
+        StartCoroutine(boardSetup());
+        Cards = GameObject.FindGameObjectsWithTag("Card");
+       // for(int i = 0; i < Cards.Length; i++)
+       //{
+            //Debug.Log(i + "th, " + Cards[i].name);
+       //}
     }
-    void setBoard(int row, int col, int count)
-    {
-        int i, j, temp;
-        int r1,r2,c1,c2;
-        for(i=0;i<row*col;i=i+2)
-        {
-            arr[i/col,i%col] = i/2;
-            arr[(i+1)/col,(i+1)%col] = i/2;
-        }
 
-        for(i=0;i<row;i++)
+    IEnumerator boardSetup()
+    {
+        int i, j, k;
+
+        board = new int[4, 4];
+        check = new bool[4, 4];
+        list = new int[8];
+
+        for (i = 0; i < 8; i++) list[i] = i; //단순히 int 넣음
+
+        //보드판 제작. check를 1번 용도로 사용.
+        for (i = 0; i < 8; i++)
         {
-            for(j=0;j<col;j++)
+            while (true)
             {
-                check[i,j] = 0;
+                j = Random.Range(0, 4);
+                k = Random.Range(0, 4);
+                if (check[j, k] == false)
+                {
+                    board[j, k] = list[i];
+                    check[j, k] = true;
+                    break;
+                }
+            }
+
+            while (true)
+            {
+                j = Random.Range(0, 4);
+                k = Random.Range(0, 4);
+                if (check[j, k] == false)
+                {
+                    board[j, k] = list[i];
+                    check[j, k] = true;
+                    break;
+                }
             }
         }
 
-        for(i=0;i<count;i++)
+        //check를 2번 용도로 쓰기 위해 초기화
+        for (i = 0; i < 4; i++)
+            for (j = 0; j < 4; j++)
+                check[i, j] = false;
+        for(i = 0; i < 4; i++)
         {
-            c1 = Random.Range(0,col);
-            c2 = Random.Range(0,col);
-            r1 = Random.Range(0,row);
-            r2 = Random.Range(0,row);
-
-            temp = arr[r1,c1];
-            arr[r1,c1] = arr[r2,c2];
-            arr[r2,c2] = temp;
+            Debug.Log(i + "번째 행 = " + board[i, 0] + ", " + board[i, 1] + ", " + board[i, 2] + ", " + board[i, 3]);
         }
+        yield return null;
+    }
+
+    void Update()
+    {
+        
     }
 }

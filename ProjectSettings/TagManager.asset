@@ -12,6 +12,7 @@ TagManager:
   - VerticalPoint
   - HorizontalPoint
   - ScoreMessage
+  - Card
   layers:
   - Default
   - TransparentFX
