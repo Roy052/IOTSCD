@@ -29,7 +29,9 @@ int16_t AcX,AcY,AcZ,Tmp,GyX,GyY,GyZ;
 // buffers for receiving and sending data
 char packetBuffer[UDP_TX_PACKET_MAX_SIZE]; //buffer to hold incoming packet,
 char  ReplyBuffer[] = "acknowledged\r\n";       // a string to send back
-
+IPAddress remote;
+int port;
+bool started = false;
 WiFiUDP Udp;
 
 void setup() {
@@ -55,28 +57,32 @@ void setup() {
 
 void loop() {
   // if there's data available, read a packet
-  int packetSize = Udp.parsePacket();
-  if (packetSize) {
-    Serial.print("Received packet of size ");
-    Serial.println(packetSize);
-    Serial.print("From ");
-    IPAddress remote = Udp.remoteIP();
-    for (int i = 0; i < 4; i++) {
-      Serial.print(remote[i], DEC);
-      if (i < 3) {
-        Serial.print(".");
+  if(started == false){
+    int packetSize = Udp.parsePacket();
+    if (packetSize) {
+      started = true;
+      Serial.print("Received packet of size ");
+      Serial.println(packetSize);
+      Serial.print("From ");
+      remote = Udp.remoteIP();
+      port = Udp.remotePort();
+      for (int i = 0; i < 4; i++) {
+        Serial.print(remote[i], DEC);
+        if (i < 3) {
+          Serial.print(".");
+        }
       }
-    }
-    Serial.print(", port ");
-    Serial.println(Udp.remotePort());
-
-    // read the packet into packetBufffer
-    Udp.read(packetBuffer, UDP_TX_PACKET_MAX_SIZE);
-    Serial.println("Contents:");
-    Serial.println(packetBuffer);
-
-    // send a reply, to the IP address and port that sent us the packet we received
-      Udp.beginPacket(Udp.remoteIP(), Udp.remotePort());
+      Serial.print(", port ");
+      Serial.println(Udp.remotePort());
+  
+      // read the packet into packetBufffer
+      Udp.read(packetBuffer, UDP_TX_PACKET_MAX_SIZE);
+      Serial.println("Contents:");
+      Serial.println(packetBuffer);
+  
+      // send a reply, to the IP address and port that sent us the packet we received
+  //    Udp.beginPacket(Udp.remoteIP(), Udp.remotePort());
+      Udp.beginPacket(remote, port);
       String txString = "";
       txString += 'X';
       txString += GyX;
@@ -87,15 +93,32 @@ void loop() {
       txString += "\r\n";
       Udp.print(txString);
       Udp.endPacket();
+    }
+    get6050();//센서값 갱신
+  //  Serial.print(GyX);
+  //  Serial.print("");
+  //  Serial.print(GyY);
+  //  Serial.print("");
+  //  Serial.print(GyZ);
+  //  Serial.println();
+    delay(10);
   }
-  get6050();//센서값 갱신
-  Serial.print(GyX);
-  Serial.print("");
-  Serial.print(GyY);
-  Serial.print("");
-  Serial.print(GyZ);
-  Serial.println();
-  delay(10);
+  else
+  {
+    get6050();
+    Udp.beginPacket(remote, port);
+    String txString = "";
+    txString += 'X';
+    txString += GyX;
+    txString += 'Y';
+    txString += GyY;
+    txString += 'Z';
+    txString += GyZ;
+    txString += "\r\n";
+    Udp.print(txString);
+    Udp.endPacket();
+    delay(100);
+  }
 }
 
 void get6050(){
