@@ -38,12 +38,12 @@ public class Stage_debug : MonoBehaviour
             {
                 Vector3 position = new Vector3((-Width*0.5f+0.5f)+x, (Height*0.5f-0.5f)-y, 0);
 
-                SpawnCard(CardType.Back, position);
+                SpawnCard(1, position);
             }
         }
     }
 
-    private void SpawnCard(CardType cardType, Vector3 position)
+    private void SpawnCard(int cardType, Vector3 position)
     {
         GameObject clone = Instantiate(cardPrefab, position, Quaternion.identity);
 

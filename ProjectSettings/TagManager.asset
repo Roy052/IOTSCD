@@ -13,6 +13,7 @@ TagManager:
   - HorizontalPoint
   - ScoreMessage
   - Card
+  - GameManager
   layers:
   - Default
   - TransparentFX

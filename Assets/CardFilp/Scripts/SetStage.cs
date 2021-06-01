@@ -8,7 +8,7 @@ public class SetStage : MonoBehaviour
     [SerializeField]
     private GameObject cardPrefab;
     [SerializeField]
-    private GameManager gm; //debug
+    private GameManager gameManager; //debug
 
 
     public int Width;
@@ -16,8 +16,9 @@ public class SetStage : MonoBehaviour
 
     private void Awake()
     {
-        //Width = gm.col;
-        //Height = gm.row;
+        gameManager = GetComponent<GameManager>(); //GameManager에 SetStage를 부착했음.
+        gameManager.boardSetup(Width, Height);  
+        Debug.Log("Width = " + Width + " Height = " + Height);
         GenerateStage();
     }
 
@@ -29,19 +30,20 @@ public class SetStage : MonoBehaviour
             {
                 Vector3 position = new Vector3((-Width*0.5f+0.5f)+x, (Height*0.5f-0.5f)-y, 0);
 
-                SpawnCard(CardType.Back, position);
+                SpawnCard(gameManager.board[x,y], x, y, position);
             }
         }
     }
 
-    private void SpawnCard(CardType cardType, Vector3 position)
+    //카드에 대해 카드 이미지 번호, 카드 width, 카드 height, 카드 위치 정보 전달.
+    private void SpawnCard(int cardType, int positionWidth, int positionHeight, Vector3 position)
     {
         GameObject clone = Instantiate(cardPrefab, position, Quaternion.identity);
 
-        clone.name = "Card";
+        clone.name = "Card" + positionWidth + positionHeight;
         clone.transform.SetParent(transform);
 
         Card card = clone.GetComponent<Card>();
-        card.Setup(cardType);
+        card.Setup(cardType, positionWidth, positionHeight, position);
     }
 }
