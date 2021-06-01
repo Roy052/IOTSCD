@@ -150,9 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e052a066cd742bb4481d8eee8695fe80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage: {fileID: 2038406865}
-  row: 4
-  col: 5
 --- !u!4 &26810831
 Transform:
   m_ObjectHideFlags: 0
@@ -199,6 +196,8 @@ MonoBehaviour:
   cardPrefab: {fileID: 2706288872422828111, guid: 93e26283f01ab8f42bb135e36ba740bf,
     type: 3}
   gm: {fileID: 26810830}
+  Width: 5
+  Height: 4
 --- !u!4 &2038406866
 Transform:
   m_ObjectHideFlags: 0

@@ -11,13 +11,14 @@ public class SetStage : MonoBehaviour
     private GameManager gm; //debug
 
 
-    public int Width{private set; get;} = 4;
-    public int Height{private set; get;} = 4;
+    public int Width;
+    public int Height;
 
     private void Awake()
     {
         //Width = gm.col;
         //Height = gm.row;
+        GenerateStage();
     }
 
     public void GenerateStage()
