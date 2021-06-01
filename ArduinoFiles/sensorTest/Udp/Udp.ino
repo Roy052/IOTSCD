@@ -23,7 +23,7 @@
 #define STAPSK  "12345677"
 #endif
 
-unsigned int localPort = 8888;      // local port to listen on
+unsigned int localPort = 50001;      // local port to listen on
 const int MPU=0x68;
 int16_t AcX,AcY,AcZ,Tmp,GyX,GyY,GyZ;
 // buffers for receiving and sending data
