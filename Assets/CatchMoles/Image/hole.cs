@@ -31,8 +31,10 @@ public class hole : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = Sprite_Hole;
         myPos = transform.position;
-        leftbottom = Camera.main.WorldToScreenPoint(myPos + new Vector3(-1.25f, -0.405f, 0));
-        righttop = Camera.main.WorldToScreenPoint(myPos + new Vector3(1.25f, 2.095f, 0));
+        //leftbottom = Camera.main.WorldToScreenPoint(myPos + new Vector3(-1.25f, -0.405f, 0));
+        //righttop = Camera.main.WorldToScreenPoint(myPos + new Vector3(1.25f, 2.095f, 0));
+        leftbottom = myPos + new Vector3(-1.25f, -0.405f, 0);
+        righttop = myPos + new Vector3(1.25f, 2.095f, 0);
     }
 
     private void Awake()
@@ -44,13 +46,21 @@ public class hole : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 MousePos = Input.mousePosition;
+        //Vector2 MousePos = Input.mousePosition;
+        Vector2 MousePos = MouseCursorObjScript.instance.pos;
         if (MousePos.x > leftbottom.x && MousePos.x < righttop.x && MousePos.y > leftbottom.y && MousePos.y < righttop.y && moleMap[row, col] < 2)
         {
             transform.localScale = new Vector3(1.3f, 1.3f, 1);
+            if (moleMap[row, col] == 1)
+            {
+                OnMouseDown();
+            }
         }
         else
+        {
             transform.localScale = new Vector3(1, 1, 1);
+        }
+
     }
 
     void BecomeMole()
