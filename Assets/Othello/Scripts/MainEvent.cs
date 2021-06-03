@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class MainEvent : MonoBehaviour
 {
+    public White_score white_score;
+    public Black_score black_score;
+    public GameObject win_logo;
+    public GameObject lose_logo;
+    public GameObject draw_logo;
     public GameObject[,] stone = new GameObject[8,8];
     public GameObject[,] origin_stone = new GameObject[8, 8];
     //3-player_color== computer_color
@@ -16,6 +21,7 @@ public class MainEvent : MonoBehaviour
     private int[,] origin = new int[8, 8];
     //8방향으로 확인하기위한 배열
     int[] updown = { -1,-1,0,1,1,1,0,-1 }, lright = { 0,1,1,1,0,-1,-1,-1 };
+    bool game_end_status=true;
     float timer=0.0f;
     int waitingTime=2;
     [SerializeField]
@@ -93,7 +99,7 @@ public class MainEvent : MonoBehaviour
     //valueary 가중치 값 반환 (60 턴 넘어가면 돌 갯수로 확인)
     public int check_value(int[,] board, int x, int y)
     {
-        if (turn-skip >= 60)
+        if (turn-skip >= 56)
         {
             return 1;
         }
@@ -147,7 +153,6 @@ public class MainEvent : MonoBehaviour
                         if (check == 1)
                         {
                             stone[que.Peek().x, que.Peek().y].GetComponent<blackanimate>().flip(que.Peek().x, que.Peek().y);
-
                         }
                         que.Dequeue();
                     }
@@ -183,7 +188,7 @@ public class MainEvent : MonoBehaviour
         {
             for (int j = 0; j < 8; j++)
             {
-                Vector3 position = new Vector3(-4.45f + j * 1.12f, -3.9f + i * 1.12f, 0);
+                Vector3 position = new Vector3(-5.45f + j * 1.12f, -3.9f + i * 1.12f, 0);
                 if (i >= 3 && i <= 4 && j >= 3 && j <= 4)
                 {
                     stone[i, j] = Instantiate(prefabArray[(j + i) % 2+1], position, Quaternion.identity);
@@ -222,35 +227,58 @@ public class MainEvent : MonoBehaviour
     void Update()
     {
 
-        int x, y, check_turn = 0,game_end=0;
-
+        int x, y, check_turn = 0,game_end=0,w=0,b=0;
         //플레이어 턴
-        if (turn % 2+1 == player_color)
+        for(int i=0; i < 8; i++)
         {
+            for (int j = 0; j < 8; j++)
+            {
+                if (board[i, j] == 1)
+                {
+                    w++;
+                }
+                if (board[i, j] == 2)
+                {
+                    b++;
+                }
+                white_score.update_white(w);
+                black_score.update_black(b);
+                if (find_input(board, i, j, turn% 2+1 ))
+                {
+                    game_end++;
+                }
+            }
+        }
+        if (game_end == 0)
+        {
+            if (game_end_status)
+            {
+                game_end_status = false;
+                if(w>b)
+                Instantiate(win_logo, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+                else if (w<b)
+                {
+                    Instantiate(lose_logo, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(draw_logo, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+                }
+            }
+        }
+        else if (turn % 2+1 == player_color)
+        {
+
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
                     origin[i, j] = board[i, j];
                     origin_stone[i, j] = stone[i, j];
-                    if (board[i, j] == 1 || board[i, j] == 2)
-                        stone[i, j].GetComponent<Animator>().SetBool("Getback", false);
-                    if (board[i, j] == 0)
-                    {
-                        game_end++;
-                    }
                 }
             }
-            if (game_end==0)
-            {
-                timer += Time.deltaTime;
-                if (timer > waitingTime)
-                {
-                    timer = 0;
-                    SceneManager.LoadScene("Game_End");
-                }
-            }
-            game_end = 0;
+
+
             //마우스 눌렀을 때
             if (Input.GetMouseButtonDown(0))
             {
@@ -332,7 +360,7 @@ public class MainEvent : MonoBehaviour
         //위 코드랑 똑같음
         else
         {
-
+            Debug.Log(game_end);
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
@@ -341,23 +369,14 @@ public class MainEvent : MonoBehaviour
                     origin_stone[i, j] = stone[i, j];
                     if (board[i, j] == 1 || board[i, j] == 2)
                         stone[i, j].GetComponent<Animator>().SetBool("Getback", false);
-                    if (board[i, j] == 0)
+                    if (find_input(board, i, j, 3-player_color))
                     {
                         game_end++;
                     }
                 }
             }
 
-            if (game_end == 0)
-            {
-                timer += Time.deltaTime;
-                if (timer > waitingTime)
-                {
-                    timer = 0;
-                    SceneManager.LoadScene("Game_End");
-                }
-            }
-            game_end = 0;
+
             //텀이 없이 두게되면 컴퓨터가 2턴 연속으로 둘 때 플레이어가 이해할 수 없으므로 1초의 텀을 둠
             timer += Time.deltaTime;
             if (timer > waitingTime)
