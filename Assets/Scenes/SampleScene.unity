@@ -132,12 +132,16 @@ GameObject:
   - component: {fileID: 24268386}
   - component: {fileID: 24268387}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Mouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< Updated upstream
   m_IsActive: 0
+=======
+  m_IsActive: 1
+>>>>>>> Stashed changes
 --- !u!4 &24268386
 Transform:
   m_ObjectHideFlags: 0
@@ -164,9 +168,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5c6e24b187c8049b6df6c6a12ef96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   sensitivity: 1150
   minusY: 0
   minusX: 0.002
+=======
+>>>>>>> Stashed changes
   arduinoPort: 50001
   m_Port: 50001
   arduinoIP: 192.168.0.11
