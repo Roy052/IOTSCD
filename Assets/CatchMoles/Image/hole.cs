@@ -15,6 +15,7 @@ public class hole : MonoBehaviour
     public Sprite Sprite_Catched;
     public Sprite Sprite_Disappear;
     private SpriteRenderer spriteRenderer;
+    public GameObject testRedDot;
 
     public static int[,] moleMap = new int[3, 3];
     public static bool playable = false;
@@ -47,7 +48,8 @@ public class hole : MonoBehaviour
     void Update()
     {
         //Vector2 MousePos = Input.mousePosition;
-        Vector2 MousePos = MouseCursorObjScript.instance.pos;
+        // Vector2 MousePos = MouseCursorObjScript.instance.pos;
+        Vector2 MousePos = testRedDot.transform.position;
         if (MousePos.x > leftbottom.x && MousePos.x < righttop.x && MousePos.y > leftbottom.y && MousePos.y < righttop.y && moleMap[row, col] < 2)
         {
             transform.localScale = new Vector3(1.3f, 1.3f, 1);
