@@ -37,6 +37,9 @@ public class GameSystem : MonoBehaviour
     public static int score = 0;
     int failCount = 0;
     public static int currentStageNum = 1;
+    public int[,,] maps;
+    public static int mapCount = 0;
+    DeployWall deployWall;
 
     //게임 객체
     GameObject player;
@@ -45,13 +48,14 @@ public class GameSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        maps = new int[5, 2, 12];
         //Game Start
         state = GameState.START;
         buttons = GameObject.FindGameObjectsWithTag("Button");
         countdown = GameObject.FindGameObjectWithTag("Countdown").GetComponent<CountdownTimer>();
         player = GameObject.FindGameObjectWithTag("Player");
         startPoint = GameObject.FindGameObjectWithTag("Start");
+        deployWall = this.GetComponent<DeployWall>();
 
         //시리얼 통신
         try
@@ -73,6 +77,12 @@ public class GameSystem : MonoBehaviour
     //메세지 지우고 카운트다운 시작.
     IEnumerator SetUpGame()
     {
+        for (int i = 0; i < 5; i++)
+            for (int j = 0; j < 2; j++)
+                for (int k = 0; k < 12; k++)
+                    maps[i, j, k] = -1;
+        makeMap();
+        deployWall.started = true;
         yield return new WaitForSeconds((float) 1.5);
         Text.Destroy(tutorialMessage);
         countdown.Active = true;
@@ -81,6 +91,45 @@ public class GameSystem : MonoBehaviour
         state = GameState.ORDERING;
     }
 
+    void makeMap()
+    {
+        int i, j, k;
+        //maps[0] 에서 없어야 하는 구간들
+        maps[0, 0, 8] = 0; maps[0, 0, 9] = 0; maps[0, 0, 10] = 0; maps[0, 0, 11] = 0;
+        maps[0, 1, 0] = 0; maps[0, 1, 5] = 0;
+
+        //maps[1] 에서 없어야 하는 구간들
+        maps[1, 0, 4] = 0; maps[1, 0, 5] = 0; maps[1, 0, 6] = 0; maps[1, 0, 7] = 0;
+        maps[1, 1, 0] = 0; maps[1, 1, 9] = 0;
+
+        //maps[1] 에서 있어야 하는 구간들
+        maps[1, 1, 4] = 1; 
+
+        //maps[2] 에서 없어야 하는 구간들
+        maps[2, 0, 6] = 0; maps[2, 0, 7] = 0; maps[2, 0, 8] = 0; maps[2, 0, 9] = 0;
+        maps[2, 1, 0] = 0; maps[2, 1, 5] = 0; maps[2, 1, 7] = 0; maps[2, 1, 9] = 0;
+
+        //maps[2] 에서 있어야 하는 구간들
+        maps[2, 0, 5] = 1;
+        maps[2, 1, 4] = 1;
+
+        //maps[3] 에서 없어야 하는 구간들
+        maps[3, 0, 0] = 0; maps[3, 0, 1] = 0; maps[3, 0, 2] = 0; maps[3, 0, 5] = 0;
+        maps[3, 0, 6] = 0; maps[3, 0, 9] = 0; maps[3, 0, 10] = 0; maps[3, 0, 11] = 0;
+        maps[3, 1, 3] = 0; maps[3, 1, 6] = 0;
+
+        //maps[3] 에서 있어야 하는 구간들
+        maps[3, 0, 7] = 1; maps[3, 0, 8] = 1;
+        maps[3, 1, 1] = 1;
+
+        //maps[4] 에서 없어야 하는 구간들
+        maps[4, 0, 2] = 0; maps[2, 0, 3] = 0; maps[2, 0, 5] = 0; maps[2, 0, 8] = 0;
+        maps[4, 1, 0] = 0; maps[2, 1, 2] = 0; maps[2, 1, 5] = 0; maps[2, 1, 6] = 0;
+
+        //maps[4] 에서 있어야 하는 구간들
+        maps[4, 0, 1] = 1; maps[4, 0, 4] = 1;
+        maps[4, 1, 7] = 1;
+    }
     //시간이 끝났을 때 CountDownTimer가 호출
     public void TimeOver()
     {

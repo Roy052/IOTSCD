@@ -40,6 +40,13 @@ public class DirectionButton : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider2D other)
+    {
+        if(other.name == "Mouse")
+        {
+            onClickButton();
+        }
+    }
 
     void Start()
     {
