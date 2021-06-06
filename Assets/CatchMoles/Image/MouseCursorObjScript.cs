@@ -34,14 +34,20 @@ public class MouseCursorObjScript : MonoBehaviour
         {
             spriteRenderer.sprite = Hammer;
             //pos = Camera.main.ScreenToWorldPoint(new Vector2(MousePos.x + 30, MousePos.y - 30));
-            transform.position = new Vector3(pos.x + 30, pos.y - 30, -2);
+            transform.position = new Vector3(pos.x, pos.y, -2);
         }
         else
         {
             spriteRenderer.sprite = Hammer_rotate;
             //pos =  transform.localPosition + Camera.main.ScreenToWorldPoint(new Vector2(MousePos.x + 10, MousePos.y - 10));
-            transform.position = new Vector3(pos.x + 10, pos.y - 10, -2);
+            transform.position = new Vector3(pos.x, pos.y, -2);
         }
+        Vector3 posBorder = Camera.main.WorldToViewportPoint(transform.position);
+        if (posBorder.x < 0f) posBorder.x = 0f;
+        if (posBorder.x > 1f) posBorder.x = 1f;
+        if (posBorder.y < 0f) posBorder.y = 0f;
+        if (posBorder.y > 1f) posBorder.y = 1f;
+        transform.position = Camera.main.ViewportToWorldPoint(posBorder);
 
         //transform.position = new Vector3(pos.x, pos.y, -2);
     }
