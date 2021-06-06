@@ -258,8 +258,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148185431}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.75, y: -3.81, z: 0}
-  m_LocalScale: {x: 0.36, y: 0.42, z: 1}
+  m_LocalPosition: {x: 5.1, y: -2.24, z: 0}
+  m_LocalScale: {x: 0.16, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -1030,8 +1030,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036536751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.75, y: -2.5, z: 0}
-  m_LocalScale: {x: 0.36, y: 0.42, z: 1}
+  m_LocalPosition: {x: 5.1, y: -1.5, z: 0}
+  m_LocalScale: {x: 0.16, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
@@ -1260,12 +1260,12 @@ GameObject:
   - component: {fileID: 1512540412}
   - component: {fileID: 1512540415}
   m_Layer: 0
-  m_Name: Mouse_old
+  m_Name: Mouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1512540412
 MonoBehaviour:
   m_ObjectHideFlags: 0

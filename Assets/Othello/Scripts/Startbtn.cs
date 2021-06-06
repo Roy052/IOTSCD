@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 public class Startbtn : MonoBehaviour
 {
     public Startbtn button;
+    public GameObject mouse;
     // Start is called before the first frame update
     void Start()
     {
         button = this;
+        mouse = GameObject.Find("Mouse");
+        DontDestroyOnLoad(mouse);
     }
 
     // Update is called once per frame
@@ -26,8 +29,6 @@ public class Startbtn : MonoBehaviour
 
     public void btnClick()
     {
-
-       SceneManager.LoadScene("Single_Play");
-
+        SceneManager.LoadScene("Single_Play");
     }
 }

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Net;
 using System.Net.Sockets;
@@ -74,7 +74,7 @@ public class Receiver_mole : MonoBehaviour
     {
         m_ReceivePacket = Encoding.ASCII.GetString(m_ReceiveBytes);
 
-        Debug.Log("Receive: "+m_ReceivePacket.ToString());
+        // Debug.Log("Receive: "+m_ReceivePacket.ToString());
     }
 
     void CloseReceiver()
@@ -98,5 +98,12 @@ public class Receiver_mole : MonoBehaviour
             //transform.position = transform.position + new Vector3(z, -x, 0) - new Vector3(minusX, minusY,0);
             MouseCursorObjScript.instance.setPosition(new Vector3(z, -x, 0) - new Vector3(minusX, minusY, 0));
         }
+        
+        Vector3 posBorder = Camera.main.WorldToViewportPoint(transform.position);
+        if (posBorder.x < 0f) posBorder.x = 0f;
+        if (posBorder.x > 1f) posBorder.x = 1f;
+        if (posBorder.y < 0f) posBorder.y = 0f;
+        if (posBorder.y > 1f) posBorder.y = 1f;
+        transform.position = Camera.main.ViewportToWorldPoint(posBorder);
     }
 }

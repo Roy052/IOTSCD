@@ -10,7 +10,7 @@ public class Receiver : MonoBehaviour
     public int sensitivity = 70000;
     public float minusY = 0.0027f;
     public float minusX = 0.0006f;
-    private UdpClient m_Receive;
+    static public UdpClient m_Receive;
     public int arduinoPort = 50001;
     public int m_Port = 50002;
     public string arduinoIP = "192.168.0.11";
@@ -74,7 +74,7 @@ public class Receiver : MonoBehaviour
     {
         m_ReceivePacket = Encoding.ASCII.GetString(m_ReceiveBytes);
 
-        Debug.Log("Receive: "+m_ReceivePacket.ToString());
+        // Debug.Log("Receive: "+m_ReceivePacket.ToString());
     }
 
     void CloseReceiver()
