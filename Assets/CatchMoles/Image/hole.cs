@@ -89,6 +89,7 @@ public class hole : MonoBehaviour
         {
             if (moleMap[row, col] == 1)
             {
+                MouseCursorObjScript.instance.swingMotion();
                 moleMap[row, col] = 2;
                 getScore scoreObj = Instantiate(getScoreObj);
                 scoreObj.init(100);

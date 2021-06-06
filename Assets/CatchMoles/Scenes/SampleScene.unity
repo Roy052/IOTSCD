@@ -1406,7 +1406,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: TIME OVER
+  m_Text: 30:00
 --- !u!222 &1013611277
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2181,7 +2181,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8df4cba69d128ec45bcdf5c0dcaf6b71, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f623ca15ea18de9458876374de1f68f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

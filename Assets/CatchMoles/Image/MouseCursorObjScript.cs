@@ -11,6 +11,7 @@ public class MouseCursorObjScript : MonoBehaviour
 
     public Vector3 pos = new Vector3(0, 0, -2);
     public Vector2 MousePos = new Vector2(0, 0);
+    private int swing = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,12 @@ public class MouseCursorObjScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
+        //test with mouse
+        pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        pos.z = -2;
+        transform.position = pos;
+        */
         //Debug.Log(transform.position);
     }
 
@@ -50,5 +57,19 @@ public class MouseCursorObjScript : MonoBehaviour
         transform.position = Camera.main.ViewportToWorldPoint(posBorder);
 
         //transform.position = new Vector3(pos.x, pos.y, -2);
+    }
+
+    public void swingMotion()
+    {
+        swing++;
+        spriteRenderer.sprite = Hammer;
+        Invoke("defaultMotion", 0.1f);
+    }
+
+    private void defaultMotion()
+    {
+        swing--;
+        if (swing == 0)
+            spriteRenderer.sprite = Hammer_rotate;
     }
 }
