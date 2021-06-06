@@ -16,6 +16,12 @@ public class Exitbtn : MonoBehaviour
         
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (Input.GetButtonDown("Jump") || Input.GetButton("Jump"))
+            Exit();
+    }
+
     public void Exit()
     {
 #if UNITY_EDITOR

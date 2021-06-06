@@ -15,16 +15,13 @@ public class Startbtn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*Vector3 myPos = transform.position;
-        Vector2 leftbottom = new Vector2(myPos.x - 80, myPos.y - 25);
-        Vector2 righttop = new Vector2(myPos.x + 80, myPos.y + 25);
-        Vector3 MousePos = MouseCursorObjScript.instance.MousePos;
-        Debug.Log(myPos);
-        Debug.Log(MousePos);
-        if (MousePos.x > leftbottom.x && MousePos.x < righttop.x && MousePos.y > leftbottom.y && MousePos.y < righttop.y)
-        {
+
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (Input.GetButtonDown("Jump")||Input.GetButton("Jump"))
             btnClick();
-        }*/
     }
 
     public void btnClick()
