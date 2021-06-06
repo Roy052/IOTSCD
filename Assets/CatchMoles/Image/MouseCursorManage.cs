@@ -14,6 +14,6 @@ public class MouseCursorManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MouseCursorObjScript.instance.setPosition(Input.mousePosition);
+        //MouseCursorObjScript.instance.setPosition(Input.mousePosition);
     }
 }

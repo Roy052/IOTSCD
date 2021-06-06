@@ -23,7 +23,7 @@ public class hole : MonoBehaviour
     double[] collRec = new double[4];  // xmin xmax ymin ymax
 
     [Header("초당 생성 확률")]
-    [SerializeField] [Range(0.0f, 100.0f)] float prob = 20.0f;
+    [SerializeField] [Range(0.0f, 100.0f)] float prob = 30.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -48,8 +48,8 @@ public class hole : MonoBehaviour
     void Update()
     {
         //Vector2 MousePos = Input.mousePosition;
-        // Vector2 MousePos = MouseCursorObjScript.instance.pos;
-        Vector2 MousePos = testRedDot.transform.position;
+        Vector2 MousePos = MouseCursorObjScript.instance.pos;
+        //Vector2 MousePos = testRedDot.transform.position;
         if (MousePos.x > leftbottom.x && MousePos.x < righttop.x && MousePos.y > leftbottom.y && MousePos.y < righttop.y && moleMap[row, col] < 2)
         {
             transform.localScale = new Vector3(1.3f, 1.3f, 1);
