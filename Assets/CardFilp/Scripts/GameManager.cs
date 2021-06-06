@@ -78,6 +78,10 @@ public class GameManager : MonoBehaviour
             cardCount++;
         }
         //두번째 누른 카드인 경우,
+        else if (positionWidth == tempCard[0] && positionHeight == tempCard[1])
+        {
+            yield return null;
+        }
         else
         {
             //두 카드가 일치할 경우,
