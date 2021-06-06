@@ -13,6 +13,7 @@ public class MainEvent : MonoBehaviour
     public GameObject draw_logo;
     public GameObject[,] stone = new GameObject[8,8];
     public GameObject[,] origin_stone = new GameObject[8, 8];
+    private GameObject mouse;
     //3-player_color== computer_color
     public static int now=4;
     public int turn = 4,player_color=1,skip=0;
@@ -182,6 +183,7 @@ public class MainEvent : MonoBehaviour
 
     private void Awake()
     {
+        mouse = GameObject.Find("Mouse");
         //기본 board 세팅
         board[3, 3] = 1; board[4, 4] = 1; board[3, 4] = 2; board[4,3] = 2;
         for (int i = 0; i < 8; i++)
@@ -278,12 +280,14 @@ public class MainEvent : MonoBehaviour
                 }
             }
 
-
             //마우스 눌렀을 때
-            if (Input.GetMouseButtonDown(0))
+            //if (Input.GetMouseButtonDown(0))
+            if (Input.GetButtonDown("Jump"))
             {
+                
                 target = null;
-                Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                //Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 pos = mouse.transform.localPosition;
                 Ray2D ray = new Ray2D(pos, Vector2.zero);
                 RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
                 //히트되었다면 여기서 실행
@@ -360,7 +364,6 @@ public class MainEvent : MonoBehaviour
         //위 코드랑 똑같음
         else
         {
-            Debug.Log(game_end);
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)

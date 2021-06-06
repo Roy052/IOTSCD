@@ -16,6 +16,8 @@ MonoBehaviour:
     type: 3}
   trans_black: {fileID: 2170979375994509876, guid: 2e36fd26651f19e4f990f523370ce6e9,
     type: 3}
+  testRedDot: {fileID: 6106324595095632540, guid: c293574ae12cc0f459390d15f7c15960,
+    type: 3}
 --- !u!1001 &8426945874354450356
 PrefabInstance:
   m_ObjectHideFlags: 0
