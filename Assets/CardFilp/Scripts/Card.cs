@@ -10,13 +10,14 @@ public class Card : MonoBehaviour
     private Sprite clearImage;
     [SerializeField]
     private Sprite Mouse_On_Image;
-
+    
     private int cardType;
 
     private SpriteRenderer spriteRenderer;
     private GameObject On_Mouse;
     int positionWidth, positionHeight;
     private GameManager gameManager;
+
     public void Setup(int cardType, int positionWidth, int positionHeight, Vector3 position)
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -63,5 +64,28 @@ public class Card : MonoBehaviour
     public void beforeMatched()
     {
         transform.localScale = new Vector2(transform.localScale.x - 0.3f, transform.localScale.y - 0.3f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.name=="Mouse")
+        {
+            OnMouseEnter();
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other) {
+        if(other.name=="Mouse")
+        {
+            OnMouseExit();
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other) {
+        if(other.name=="Mouse")
+        {
+            if(Input.GetButtonDown("Jump")||Input.GetButton("Jump"))
+            {
+                OnMouseDown();
+            }
+        }
     }
 }

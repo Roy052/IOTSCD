@@ -9,6 +9,8 @@ public class SetStage : MonoBehaviour
     private GameObject cardPrefab;
     [SerializeField]
     private GameManager gameManager; //debug
+    public float gap = 1.3f;
+    public float imagesize = 2;
 
 
     public int Width;
@@ -24,11 +26,14 @@ public class SetStage : MonoBehaviour
 
     public void GenerateStage()
     {
+        float startX = -(imagesize*(Width/2)+gap*(Width/2))+gap;
+        float startY = -(imagesize*(Height/2)+gap*(Height/2));
+
         for(int y = 0; y < Height; y++)
         {
             for(int x = 0; x < Width; x++)
             {
-                Vector3 position = new Vector3((-Width*0.5f+0.5f)+x, (Height*0.5f-0.5f)-y, 0);
+                Vector3 position = new Vector3(startX+(imagesize*x)+(gap*x),startY+(imagesize*y)+(gap*y), 0);
 
                 SpawnCard(gameManager.board[x,y], x, y, position);
             }
