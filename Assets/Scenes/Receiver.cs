@@ -74,7 +74,7 @@ public class Receiver : MonoBehaviour
     {
         m_ReceivePacket = Encoding.ASCII.GetString(m_ReceiveBytes);
 
-        // Debug.Log("Receive: "+m_ReceivePacket.ToString());
+       // Debug.Log("Receive: "+m_ReceivePacket.ToString());
     }
 
     void CloseReceiver()

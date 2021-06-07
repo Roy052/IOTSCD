@@ -26,6 +26,7 @@ public class GameSystem : MonoBehaviour
 
     //UI용 객체
     GameObject[] buttons;
+    GameObject[] buttonObjects;
     DirectionButton temp;
     public Text tutorialMessage;
     public Text orderMessage;
@@ -40,6 +41,7 @@ public class GameSystem : MonoBehaviour
     public int[,,] maps;
     public static int mapCount = 0;
     DeployWall deployWall;
+    GameObject mouse;
 
     //게임 객체
     GameObject player;
@@ -55,7 +57,10 @@ public class GameSystem : MonoBehaviour
         countdown = GameObject.FindGameObjectWithTag("Countdown").GetComponent<CountdownTimer>();
         player = GameObject.FindGameObjectWithTag("Player");
         startPoint = GameObject.FindGameObjectWithTag("Start");
+        buttonObjects = GameObject.FindGameObjectsWithTag("ButtonObject");
         deployWall = this.GetComponent<DeployWall>();
+        mouse = GameObject.Find("Mouse");
+        DontDestroyOnLoad(mouse);
 
         //시리얼 통신
         try
@@ -71,6 +76,7 @@ public class GameSystem : MonoBehaviour
         }
 
         StartCoroutine(SetUpGame());
+
 
     }
 
@@ -93,7 +99,6 @@ public class GameSystem : MonoBehaviour
 
     void makeMap()
     {
-        int i, j, k;
         //maps[0] 에서 없어야 하는 구간들
         maps[0, 0, 8] = 0; maps[0, 0, 9] = 0; maps[0, 0, 10] = 0; maps[0, 0, 11] = 0;
         maps[0, 1, 0] = 0; maps[0, 1, 5] = 0;
@@ -135,11 +140,10 @@ public class GameSystem : MonoBehaviour
     {
         state = GameState.MOVEMENT;
         //버튼 별로 삭제
-        for (int i = 0; i < 4; i++)
-        { 
+        for (int i = 0; i < buttons.Length; i++)
             buttons[i].SetActive(false);
-        }
-
+        for (int i = 0; i < buttonObjects.Length; i++)
+            buttonObjects[i].SetActive(false);
         //플레이어 움직임
         StartCoroutine(player.GetComponent<Playermove>().Movement());
 
@@ -155,6 +159,7 @@ public class GameSystem : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             buttons[i].SetActive(true);
+            buttonObjects[i].SetActive(true);
         }
 
         //order 리셋

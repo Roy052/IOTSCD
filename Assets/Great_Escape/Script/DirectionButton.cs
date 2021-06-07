@@ -16,7 +16,8 @@ public class DirectionButton : MonoBehaviour
         orderMessage.text = "";
     }
     public void onClickButton()
-    { 
+    {
+        Debug.Log("AA");
         //Debug.Log(this.gameObject.name);
         if(this.gameObject.name == "Up")
         {
@@ -40,9 +41,10 @@ public class DirectionButton : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.name == "Mouse")
+        Debug.Log("bbb");
+        if(other.GetComponent<GameObject>().name == "Mouse")
         {
             onClickButton();
         }

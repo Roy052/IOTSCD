@@ -53,7 +53,7 @@ public class Playermove: MonoBehaviour
                 playerRigidBody.AddForce(movingDirection * moveSpeed * 100);
                 Debug.Log(hit.distance + ", " + hit.transform.name);
                 float waitTime = hit.distance / (500 * Time.fixedDeltaTime);
-                yield return new WaitForSeconds(waitTime);
+                yield return new WaitForSeconds(waitTime - 0.001f);
                 playerRigidBody.velocity = Vector2.zero;
             }
             if (order[i] == 1)
