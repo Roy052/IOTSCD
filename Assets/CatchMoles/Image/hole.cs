@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class hole : MonoBehaviour
 {
+    public int kyaru = 0;
     public int row;
     public int col;
     public Score scoreInstance;  // 게임스코어 접근용
@@ -11,6 +12,8 @@ public class hole : MonoBehaviour
     public Canvas UIparent;  // 점수표시 부모
 
     public Sprite Sprite_Hole;
+    public Sprite kyaru_catchable;
+    public Sprite kyaru_catched;
     public Sprite Sprite_Catchable;
     public Sprite Sprite_Catched;
     public Sprite Sprite_Disappear;
@@ -76,7 +79,10 @@ public class hole : MonoBehaviour
             if (rand < prob && moleMap[row, col] == 0)
             {
                 moleMap[row, col] = 1;
-                spriteRenderer.sprite = Sprite_Catchable;
+                if (kyaru == 0)
+                    spriteRenderer.sprite = Sprite_Catchable;
+                else
+                    spriteRenderer.sprite = kyaru_catchable;
             }
             Invoke("BecomeMole", 1.0f);
         }
@@ -96,8 +102,17 @@ public class hole : MonoBehaviour
                 scoreObj.transform.localPosition = this.gameObject.transform.localPosition + new Vector3(0, 1, 0);
                 scoreInstance.addScore(100);
 
-                spriteRenderer.sprite = Sprite_Catched;
-                Invoke("AfterCatched", 0.1f);
+
+                if (kyaru == 0)
+                {
+                    spriteRenderer.sprite = Sprite_Catched;
+                    Invoke("AfterCatched", 0.1f);
+                }
+                else
+                {
+                    spriteRenderer.sprite = kyaru_catched;
+                    Invoke("GoIdle", 0.5f);
+                }
             }
         }
     }

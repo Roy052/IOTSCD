@@ -24,12 +24,12 @@ public class MouseCursorObjScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
+        
         //test with mouse
         pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pos.z = -2;
         transform.position = pos;
-        */
+        
         //Debug.Log(transform.position);
     }
 

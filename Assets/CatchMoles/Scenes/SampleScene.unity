@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c27b0c354cf4f54fb5f167eeab599f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kyaru: 0
   row: 1
   col: 2
   scoreInstance: {fileID: 377060093}
@@ -327,6 +328,8 @@ MonoBehaviour:
     type: 3}
   UIparent: {fileID: 176152421}
   Sprite_Hole: {fileID: 21300000, guid: 68e8b3e397d14234d8023a58a73e3f13, type: 3}
+  kyaru_catchable: {fileID: 21300000, guid: 5cab9b4ad5e538d43b779610c55525e9, type: 3}
+  kyaru_catched: {fileID: 21300000, guid: f27c2e501fefbb4429e4ed2f2015442e, type: 3}
   Sprite_Catchable: {fileID: 21300000, guid: 04083991986aa4947b5030ddcac28933, type: 3}
   Sprite_Catched: {fileID: 21300000, guid: 94beca169b71ea44eb770eb3c1b07db8, type: 3}
   Sprite_Disappear: {fileID: 21300000, guid: 8a1d0865f777dde4e8f9fe01959d22ef, type: 3}
@@ -453,6 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c27b0c354cf4f54fb5f167eeab599f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kyaru: 0
   row: 0
   col: 2
   scoreInstance: {fileID: 377060093}
@@ -460,6 +464,8 @@ MonoBehaviour:
     type: 3}
   UIparent: {fileID: 176152421}
   Sprite_Hole: {fileID: 21300000, guid: 68e8b3e397d14234d8023a58a73e3f13, type: 3}
+  kyaru_catchable: {fileID: 21300000, guid: 5cab9b4ad5e538d43b779610c55525e9, type: 3}
+  kyaru_catched: {fileID: 21300000, guid: f27c2e501fefbb4429e4ed2f2015442e, type: 3}
   Sprite_Catchable: {fileID: 21300000, guid: 04083991986aa4947b5030ddcac28933, type: 3}
   Sprite_Catched: {fileID: 21300000, guid: 94beca169b71ea44eb770eb3c1b07db8, type: 3}
   Sprite_Disappear: {fileID: 21300000, guid: 8a1d0865f777dde4e8f9fe01959d22ef, type: 3}
@@ -821,6 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c27b0c354cf4f54fb5f167eeab599f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kyaru: 0
   row: 2
   col: 0
   scoreInstance: {fileID: 377060093}
@@ -828,6 +835,8 @@ MonoBehaviour:
     type: 3}
   UIparent: {fileID: 176152421}
   Sprite_Hole: {fileID: 21300000, guid: 68e8b3e397d14234d8023a58a73e3f13, type: 3}
+  kyaru_catchable: {fileID: 21300000, guid: 5cab9b4ad5e538d43b779610c55525e9, type: 3}
+  kyaru_catched: {fileID: 21300000, guid: f27c2e501fefbb4429e4ed2f2015442e, type: 3}
   Sprite_Catchable: {fileID: 21300000, guid: 04083991986aa4947b5030ddcac28933, type: 3}
   Sprite_Catched: {fileID: 21300000, guid: 94beca169b71ea44eb770eb3c1b07db8, type: 3}
   Sprite_Disappear: {fileID: 21300000, guid: 8a1d0865f777dde4e8f9fe01959d22ef, type: 3}
@@ -1062,6 +1071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c27b0c354cf4f54fb5f167eeab599f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kyaru: 0
   row: 0
   col: 0
   scoreInstance: {fileID: 377060093}
@@ -1069,6 +1079,8 @@ MonoBehaviour:
     type: 3}
   UIparent: {fileID: 176152421}
   Sprite_Hole: {fileID: 21300000, guid: 68e8b3e397d14234d8023a58a73e3f13, type: 3}
+  kyaru_catchable: {fileID: 21300000, guid: 5cab9b4ad5e538d43b779610c55525e9, type: 3}
+  kyaru_catched: {fileID: 21300000, guid: f27c2e501fefbb4429e4ed2f2015442e, type: 3}
   Sprite_Catchable: {fileID: 21300000, guid: 04083991986aa4947b5030ddcac28933, type: 3}
   Sprite_Catched: {fileID: 21300000, guid: 94beca169b71ea44eb770eb3c1b07db8, type: 3}
   Sprite_Disappear: {fileID: 21300000, guid: 8a1d0865f777dde4e8f9fe01959d22ef, type: 3}
@@ -1517,6 +1529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c27b0c354cf4f54fb5f167eeab599f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kyaru: 0
   row: 0
   col: 1
   scoreInstance: {fileID: 377060093}
@@ -1524,6 +1537,8 @@ MonoBehaviour:
     type: 3}
   UIparent: {fileID: 176152421}
   Sprite_Hole: {fileID: 21300000, guid: 68e8b3e397d14234d8023a58a73e3f13, type: 3}
+  kyaru_catchable: {fileID: 21300000, guid: 5cab9b4ad5e538d43b779610c55525e9, type: 3}
+  kyaru_catched: {fileID: 21300000, guid: f27c2e501fefbb4429e4ed2f2015442e, type: 3}
   Sprite_Catchable: {fileID: 21300000, guid: 04083991986aa4947b5030ddcac28933, type: 3}
   Sprite_Catched: {fileID: 21300000, guid: 94beca169b71ea44eb770eb3c1b07db8, type: 3}
   Sprite_Disappear: {fileID: 21300000, guid: 8a1d0865f777dde4e8f9fe01959d22ef, type: 3}
@@ -1693,6 +1708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c27b0c354cf4f54fb5f167eeab599f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kyaru: 0
   row: 1
   col: 0
   scoreInstance: {fileID: 377060093}
@@ -1700,6 +1716,8 @@ MonoBehaviour:
     type: 3}
   UIparent: {fileID: 176152421}
   Sprite_Hole: {fileID: 21300000, guid: 68e8b3e397d14234d8023a58a73e3f13, type: 3}
+  kyaru_catchable: {fileID: 21300000, guid: 5cab9b4ad5e538d43b779610c55525e9, type: 3}
+  kyaru_catched: {fileID: 21300000, guid: f27c2e501fefbb4429e4ed2f2015442e, type: 3}
   Sprite_Catchable: {fileID: 21300000, guid: 04083991986aa4947b5030ddcac28933, type: 3}
   Sprite_Catched: {fileID: 21300000, guid: 94beca169b71ea44eb770eb3c1b07db8, type: 3}
   Sprite_Disappear: {fileID: 21300000, guid: 8a1d0865f777dde4e8f9fe01959d22ef, type: 3}
@@ -2006,6 +2024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c27b0c354cf4f54fb5f167eeab599f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kyaru: 0
   row: 2
   col: 1
   scoreInstance: {fileID: 377060093}
@@ -2013,6 +2032,8 @@ MonoBehaviour:
     type: 3}
   UIparent: {fileID: 176152421}
   Sprite_Hole: {fileID: 21300000, guid: 68e8b3e397d14234d8023a58a73e3f13, type: 3}
+  kyaru_catchable: {fileID: 21300000, guid: 5cab9b4ad5e538d43b779610c55525e9, type: 3}
+  kyaru_catched: {fileID: 21300000, guid: f27c2e501fefbb4429e4ed2f2015442e, type: 3}
   Sprite_Catchable: {fileID: 21300000, guid: 04083991986aa4947b5030ddcac28933, type: 3}
   Sprite_Catched: {fileID: 21300000, guid: 94beca169b71ea44eb770eb3c1b07db8, type: 3}
   Sprite_Disappear: {fileID: 21300000, guid: 8a1d0865f777dde4e8f9fe01959d22ef, type: 3}
@@ -2237,6 +2258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c27b0c354cf4f54fb5f167eeab599f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kyaru: 0
   row: 2
   col: 2
   scoreInstance: {fileID: 377060093}
@@ -2244,6 +2266,8 @@ MonoBehaviour:
     type: 3}
   UIparent: {fileID: 176152421}
   Sprite_Hole: {fileID: 21300000, guid: 68e8b3e397d14234d8023a58a73e3f13, type: 3}
+  kyaru_catchable: {fileID: 21300000, guid: 5cab9b4ad5e538d43b779610c55525e9, type: 3}
+  kyaru_catched: {fileID: 21300000, guid: f27c2e501fefbb4429e4ed2f2015442e, type: 3}
   Sprite_Catchable: {fileID: 21300000, guid: 04083991986aa4947b5030ddcac28933, type: 3}
   Sprite_Catched: {fileID: 21300000, guid: 94beca169b71ea44eb770eb3c1b07db8, type: 3}
   Sprite_Disappear: {fileID: 21300000, guid: 8a1d0865f777dde4e8f9fe01959d22ef, type: 3}
@@ -2451,6 +2475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c27b0c354cf4f54fb5f167eeab599f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kyaru: 0
   row: 1
   col: 1
   scoreInstance: {fileID: 377060093}
@@ -2458,6 +2483,8 @@ MonoBehaviour:
     type: 3}
   UIparent: {fileID: 176152421}
   Sprite_Hole: {fileID: 21300000, guid: 68e8b3e397d14234d8023a58a73e3f13, type: 3}
+  kyaru_catchable: {fileID: 21300000, guid: 5cab9b4ad5e538d43b779610c55525e9, type: 3}
+  kyaru_catched: {fileID: 21300000, guid: f27c2e501fefbb4429e4ed2f2015442e, type: 3}
   Sprite_Catchable: {fileID: 21300000, guid: 04083991986aa4947b5030ddcac28933, type: 3}
   Sprite_Catched: {fileID: 21300000, guid: 94beca169b71ea44eb770eb3c1b07db8, type: 3}
   Sprite_Disappear: {fileID: 21300000, guid: 8a1d0865f777dde4e8f9fe01959d22ef, type: 3}
