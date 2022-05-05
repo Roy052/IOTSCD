@@ -31,4 +31,15 @@ public class ObjectToButton : MonoBehaviour
             }
         }
     }
+
+    private void OnMouseDown()
+    {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            if (buttons[i].name == this.name)
+            {
+                buttons[i].GetComponent<DirectionButton>().onClickButton();
+            }
+        }
+    }
 }
