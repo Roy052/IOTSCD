@@ -11,7 +11,7 @@
 <h3>게임 플레이 영상</h3>
 </div>
 
-[![Project7](https://i9.ytimg.com/vi_webp/EJMHZkMympU/mqdefault.webp?sqp=CPiQgJcG&rs=AOn4CLDBiAwrkALXafyhZNRy7UqE8_KRaw)](https://www.youtube.com/watch?v=EJMHZkMympU&ab_channel=Roy052)
+[![Project7](https://i9.ytimg.com/vi/EJMHZkMympU/mq2.jpg?sqp=CLS_nJcG&rs=AOn4CLBRVzutjlOY698hHDz2rxKNFTcL3g)](https://www.youtube.com/watch?v=EJMHZkMympU&ab_channel=Roy052)
 
 <div>
 <h3>팀원 별 역할</h3>
