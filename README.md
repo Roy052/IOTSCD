@@ -71,7 +71,7 @@
   </div>
   <div>
     <h2> 게임 플레이 영상 </h2>
-    https://youtu.be/-fc0AM8Kmko
+    https://youtu.be/EJMHZkMympU
   </div>
   <div>
     <h2> 배우고 느낀 점</h2>
